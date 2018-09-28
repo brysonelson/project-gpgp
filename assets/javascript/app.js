@@ -1,6 +1,6 @@
 // Initialize and add the map to element ID map
 function initMap() {
-    //   // The location of Uluru
+      // The location of Uluru
     //   var uluru = {lat: -25.344, lng: 131.036};
     //   // The map, centered at Uluru
     //   var map = new google.maps.Map(
@@ -12,7 +12,7 @@ function initMap() {
     
     var geocoder;
     var map;
-    var address = "San Diego, CA";
+    var address = "Los Angeles, CA";
     
     function initialize() {
       geocoder = new google.maps.Geocoder();
@@ -28,7 +28,7 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-      debugger;
+    //   debugger;
       if (geocoder) {
         geocoder.geocode({
           'address': address

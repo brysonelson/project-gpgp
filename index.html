@@ -20,7 +20,7 @@
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize">
     </script>   
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <style>
@@ -32,6 +32,7 @@
         #map_canvas {
             height: 100%;
             width: 100%;
+            background-color: grey;
         }
        </style>
 </head>
@@ -110,7 +111,9 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
+
+    <div id="map_canvas"></div>
 
         <!-- Start Footer -->
 
