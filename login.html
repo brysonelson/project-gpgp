@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
+    <title>Bar Finder Login</title>
+    <!-- <link rel="icon" href="assets/images/beer.png"> -->
+    <link rel="icon" href="assets/images/cocktail.png">
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <!-- Link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Link to Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 
     <style rel="stylesheet" type="text/css">
         #login-screen {
@@ -15,16 +30,70 @@
     </style>
 </head>
 <body>
+    <!-- Start Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <span class="navbar-brand mb-1 h1">
+            <!-- <a class="navbar-brand" href="#"><i class="fas fa-beer fa-flip-horizontal"></i> Bar Finder</a> -->
+            <a class="navbar-brand" id="brand" href="index.html"><i class="fas fa-cocktail fa-flip-horizontal"></i> Bar
+                Finder</a>
+        </span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Search</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+                </li>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+            </form> -->
+        </div>
+    </nav>
     
-    <h4 id="login">Login</h4><br>
-    <input id="email-field" type="email" placeholder="Email"><br>
-    <input id="password-field" type="password" placeholder="Password"><br>
-    <button id="create-acct-btn" type="submit">Create Account</button>
-    <button id="login-btn" type="submit">Login</button>
-    <button id="log-out-btn" type="submit">Log Out</button>
+    <!--Login Form-->
+    <div class="container">
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Login or Create Account</strong>
+                    </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="search"><strong>Email</strong></label>
+                                <input type="text" class="form-control" id="email-field">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd"><strong>Password</strong></label>
+                                <input type="text" class="form-control" id="password-field">
+                            </div>
+                            <button type="submit" class="btn btn-default" id="create-acct-btn">Create Account</button>
+                            <button type="submit" class="btn btn-default" id="login-btn">Login</button>
+                            <button type="submit" class="btn btn-default" id="log-out-btn">Log Out</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--Login Screen Code.  Will be seperate page
     <div id="login-screen">
-
+        
         <h1>Welcome<span id="user-name"></span></h1>
 
         <form>
@@ -33,18 +102,33 @@
             <input type="button" value="test3" class="testbox">
             <input type="button" value="test4" class="testbox"><br><br>
         </form>
-        
+      
+    
         <h2>Favorites:</h2>
 
         <div id="user-choices">
 
         </div>
     </div>
+    --> 
+
+    <!-- Start Footer -->
+    <footer id="main-footer" class="fixed-bottom bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="py-3">
+                        <p class="lead mb-0" id="gpgp">&copy; Copyright 2018 Git Push Git Paid <img src="assets/images/GPGP logo white.png"
+                                id="logo"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
 
 
-
-
-
+    <!--firebase, jquery, and javascript page references-->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./assets/javascript/login.js"></script>
