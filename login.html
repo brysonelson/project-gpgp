@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+    <style rel="stylesheet" type="text/css">
+        #login-screen {
+            display: none;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <h4 id="login">Login</h4><br>
+    <input id="email-field" type="email" placeholder="Email"><br>
+    <input id="password-field" type="password" placeholder="Password"><br>
+    <button id="create-acct-btn" type="submit">Create Account</button>
+    <button id="login-btn" type="submit">Login</button>
+    <button id="log-out-btn" type="submit">Log Out</button>
+
+    <div id="login-screen">
+
+        <h1>Welcome<span id="user-name"></span></h1>
+
+        <form>
+            <input type="button" value="test1" class="testbox">
+            <input type="button" value="test2" class="testbox">
+            <input type="button" value="test3" class="testbox">
+            <input type="button" value="test4" class="testbox"><br><br>
+        </form>
+        
+        <h2>Favorites:</h2>
+
+        <div id="user-choices">
+
+        </div>
+    </div>
+
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./assets/javascript/login.js"></script>
+    
+
+</body>
+</html>
