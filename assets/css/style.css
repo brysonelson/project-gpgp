@@ -91,3 +91,7 @@ a.nav-link:hover {
     width: 15px;
     margin-top: -3px;
 }
+
+#search-results {
+    display: none;
+}
