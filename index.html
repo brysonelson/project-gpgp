@@ -68,20 +68,26 @@
                     <div class="card-body">
                         <form role="form">
                             <div class="form-group">
-                                <label for="search"><strong>Zip Code</strong></label>
-                                <input type="text" class="form-control" id="zipCode">
+                                <label for="search"><strong>City</strong></label>
+                                <input type="text" name="city" required class="form-control" id="city" placeholder="San Diego">
                             </div>
                             <div class="form-group">
-                                <label for="pwd"><strong>Type</strong></label>
-                                <input type="text" class="form-control" id="type">
+                                <label for="pwd"><strong>State</strong></label>
+                                <input type="text" name="state" required class="form-control" id="state" placeholder="CA">
                             </div>
                             <div class="form-group">
-                                <label for="pwd"><strong>Amenities</strong></label>
-                                <select id="amenities" class="form-control">
+                                <label for="pwd"><strong>Name of Bar</strong></label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd"><strong>Type of Bar</strong></label>
+                                <select id="amenities" class="form-control" id="type">
                                     <option selected>Choose...</option>
-                                    <option>Wi-Fi</option>
-                                    <option>Darts</option>
-                                    <option>Karaoke</option>
+                                    <option>Micro</option>
+                                    <option>Regional</option>
+                                    <option>Brewpub</option>
+                                    <option>Large</option>
+                                    <option>Planning</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-default" id="submit">Submit</button>
@@ -90,10 +96,11 @@
                 </div>
             </div>
         </div>
+        </div>
 
         <!-- Start Footer -->
 
-        <footer id="main-footer" class="fixed-bottom bg-dark">
+        <footer id="main-footer" class="bg-dark">
             <div class="container">
                 <div class="row">
                     <div class="col text-center">
@@ -108,7 +115,7 @@
 
         <!-- End Footer -->
 
-    </div>
+    <!-- </div> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
