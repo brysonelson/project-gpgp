@@ -35,14 +35,14 @@ $("#submit").on("click", function() {
         for (var i = 0; i < response.length; i++) {
             //display the search results in the search-results area
 
-            var resultsDiv = $("<div class='card results-card'>").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id);
+            var resultsDiv = $("<div class='card results-card'>");
             $("#search-results").append(resultsDiv);
             var nameDiv = $("<h4>").text(response[i].name).appendTo(resultsDiv);
             var phoneDiv = $("<h4>").text(response[i].phone).appendTo(resultsDiv);
             var typeDiv = $("<h5>").text(response[i].brewery_type).appendTo(resultsDiv);
             var addressDiv = $("<h5>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
             var websiteDiv = $("<h5>").text(response[i].website_url).appendTo(resultsDiv);
-            var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").addClass("btn btn-default").appendTo(resultsDiv);
+            var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(resultsDiv);
 
             console.log(response[i].name);
         }
@@ -51,9 +51,6 @@ $("#submit").on("click", function() {
 
 
 })
-
-
-$(document).on("click", )
 
 // Initialize and add the map to element ID map
 function initMap() {
