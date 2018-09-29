@@ -19,7 +19,7 @@ $("#submit").on("click", function() {
 
     var queryUrl = "https://api.openbrewerydb.org/breweries?" + $.param(url) + "&page=1&per_page=10";
 
-    console.log(url);
+    console.log(queryUrl);
 
     //hide the search area
     $("#search-area").css("display", "none");
@@ -112,4 +112,4 @@ function initMap() {
         });
       }
     }
-    // google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
