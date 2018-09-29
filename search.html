@@ -19,9 +19,11 @@
         crossorigin="anonymous">
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize">
-    </script>   
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize">
+
+
+
+    </script>
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <style>
         #map {
@@ -38,12 +40,14 @@
 </head>
 
 <body onload="initialize()">
+
     <!-- Start Navbar -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <span class="navbar-brand mb-1 h1">
-            <!-- <a class="navbar-brand" href="#"><i class="fas fa-beer fa-flip-horizontal"></i> Bar Finder</a> -->
-            <a class="navbar-brand" id="brand" href="index.html"><i class="fas fa-cocktail fa-flip-horizontal"></i> Bar
-                Finder</a>
+            <a class="navbar-brand" id="brand" href="index.html"><i class="fas fa-cocktail fa-flip-horizontal"></i>
+                Bar Finder
+            </a>
         </span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,20 +57,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link" href="search.html">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Search</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Login</a>
+                    <a class="nav-link" href="login.html">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-            </form> -->
         </div>
     </nav>
 
@@ -116,6 +115,15 @@
 
     
 
+    <!-- Start Footer -->
+
+    <footer id="main-footer" class="fixed-bottom bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="py-3">
+                        <p class="lead mb-0" id="gpgp">&copy; Copyright 2018 Git Push Git Paid <img src="assets/images/GPGP logo white.png"
+                                id="logo"></p>
         <div id="search-results">
 
         </div>
@@ -135,9 +143,10 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-        <!-- End Footer -->
+    <!-- End Footer -->
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
