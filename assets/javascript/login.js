@@ -98,20 +98,21 @@ $("#log-out-btn").on("click", function() {
 //============================ Whenever Anyone Logs In Or Out ==================================
 
 //whenever the login state changes
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
     $("#user-choices").empty();
 
     //if there is a user logged in...
     if (user) {
 
-        $("#main-button").on("click", function() {
+        //when you click the start button on the home page button
+        $("#main-button").on("click", function () {
             $("#main-button").attr("href", "search.html");
         })
 
         //show the login screen
         $("#login-screen").css("display", "block");
         $("#login").css("display", "none");
-        console.log("success");
+        $("#favorites").css("display", "block");
 
         //store the logged in user in a var
         var user = firebase.auth().currentUser;
@@ -125,39 +126,49 @@ firebase.auth().onAuthStateChanged(function(user) {
         var userObject = firebase.database().ref().child('users');
         var userList = userObject.child(uid);
 
-        userList.on('value', function(user) {
+        //whenever the users data updates or the page loads
+        userList.on('value', function (user) {
 
+            //store the users data from firebase
             var userData = Object.values(user.val());
-            //for loop through the users choices in firebase
-            for (var i=0; i < userData.length; i++) {
-                //var usersData = JSON.stringify(user.val(), null,);
-                
-                //usersData = JSON.parse(usersData);
-                //userData = Object.values(userData);
-                console.log(Object.values(userData));
-                
-                var userChoice = $("<div>");
-                var userChoiceContent = $("<h3>").appendTo(userChoice)
-                userChoiceContent.text(userData[i].choice);
-                userChoice.appendTo($("#user-choices"));
-                
-            }
-
-
             
-            //$("#user-choices").text(JSON.stringify(user.val(), null, 3));
-            //$("#user-choices").text(user.val().choice6);
-            console.log(user.val().choice6);
-        });
+            //for loop through the users choices in firebase and send the URL with AJAX to get full results
+            for (var i = 0; i < userData.length; i++) {
+                var favoriteUrl = userData[i].favorite;
+                $.ajax({
+                    url: favoriteUrl,
+                    method: "GET"
+                }).then(function (response) {
 
-        //userList.on('child_added', snap => console.log(snap.val()));
+                    //var usersData = JSON.stringify(user.val(), null,);
+
+                    //usersData = JSON.parse(usersData);
+                    //userData = Object.values(userData);
+                    console.log(response);
+
+                    console.log(favoriteUrl);
+
+                    //create a userFavorite div and append it to the page
+                    var userFavorite = $("<div class'card'><hr>");
+                    userFavorite.appendTo($("#user-choices"));
+
+                    //create the divs to show the users favorites
+                    var nameDiv = $("<h4>").text(response.name).appendTo(userFavorite);
+                    var phoneDiv = $("<h4>").text(response.phone).appendTo(userFavorite);
+                    var typeDiv = $("<h5>").text(response.brewery_type).appendTo(userFavorite);
+                    var addressDiv = $("<h5>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).appendTo(userFavorite);
+                    var websiteDiv = $("<h5>").text(response.website_url).appendTo(userFavorite);
+                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default").appendTo(userFavorite);
+
+                });
+            };
+
+        });
         
-        
-        
-    //or else...
+        //or else...
     } else {
         console.log("no User");
-        $("#main-button").on("click", function() {
+        $("#main-button").on("click", function () {
             $("#main-button").attr("href", "createAcct.html");
         })
     }
@@ -167,29 +178,34 @@ firebase.auth().onAuthStateChanged(function(user) {
 //============================= When The User Makes A Choice =====================================
 
 //when the logged in user clicks a checkbox
-$(document).on("click", ".testbox", function() {
+$(document).on("click", ".favorites-button", function() {
 
-    console.log("testbox");
-
-    $("#user-choices").empty();
+    //$("#user-choices").empty();
 
     //store the specific value of that checkbox
-    var userChoice = $(this).val();
+    var userChoice = $(this).attr("data-id");
 
-    
+    //store the current user
     var user = firebase.auth().currentUser;
 
     //save that value in the users object in firebase
     var rootRef = firebase.database().ref();
-
-    //var choiceKey = "choice" + i;
-
     var storesRef = rootRef.child('users').child(uid).push({
-        choice: userChoice
+        favorite: userChoice
     });
+       
+});
 
-    //i++
+//========================== When a user click to clear favorites ==================
+$(document).on("click", "#clear-favs-btn", function() {
 
-    //console.log(i);
+    //prevent the page from reloading
+    event.preventDefault();
+
+    //remove the item from database
+    firebase.database().ref().child('users').child(uid).remove();
+
+    //make sure the screen clears
+    $("#user-choices").empty();
        
 });
