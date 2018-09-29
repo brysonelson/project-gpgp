@@ -41,7 +41,7 @@ $("#submit").on("click", function() {
             var typeDiv = $("<h5>").text(response[i].brewery_type).appendTo(resultsDiv);
             var addressDiv = $("<h5>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
             var websiteDiv = $("<h5>").text(response[i].website_url).appendTo(resultsDiv);
-            var favoritesBtn = $("<input>").attr("type", "button").attr("value","Add To Favorites").appendTo(resultsDiv);
+            var favoritesBtn = $("<input class='favorites-button>").attr("type", "button").attr("value","Add To Favorites").appendTo(resultsDiv);
 
             console.log(response[i].name);
         }
@@ -51,6 +51,10 @@ $("#submit").on("click", function() {
 
 
 })
+
+
+$(document).on("click", )
+
 // Initialize and add the map to element ID map
 function initMap() {
       // The location of Uluru
