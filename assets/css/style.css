@@ -40,7 +40,11 @@ a.nav-link:hover {
     font-size: 24px;
 }
 
-.card {
+#favorites {
+    display: none;
+}
+
+.card, .results-card {
     color: #3D0A17;
     /* background-color: #e9ebee; */
     width: 35%;
