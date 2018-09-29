@@ -20,6 +20,8 @@ var uid;
 //when you click Create Account
 $("#create-acct-btn").on("click", function() {
 
+    event.preventDefault();
+
     //store the email and password
     var emailInput = $("#email-field").val().trim();
     var passInput = $("#password-field").val().trim();
@@ -49,6 +51,8 @@ $("#login-btn").on("click", function() {
 
     //$("#user-choices").empty();
 
+    event.preventDefault();
+
     //store the users email and pass to submit
     var emailInput = $("#email-field").val().trim();
     var passInput = $("#password-field").val().trim();
@@ -75,6 +79,8 @@ $("#login-btn").on("click", function() {
 //when you click the log out button
 $("#log-out-btn").on("click", function() {
 
+    event.preventDefault();
+
     //hide the login text
     $("#login-screen").css("display", "none");
     $("#login").css("display", "block");
@@ -97,6 +103,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     //if there is a user logged in...
     if (user) {
+
+        $("#main-button").on("click", function() {
+            $("#main-button").attr("href", "search.html");
+        })
 
         //show the login screen
         $("#login-screen").css("display", "block");
@@ -147,6 +157,9 @@ firebase.auth().onAuthStateChanged(function(user) {
     //or else...
     } else {
         console.log("no User");
+        $("#main-button").on("click", function() {
+            $("#main-button").attr("href", "createAcct.html");
+        })
     }
 })
 
