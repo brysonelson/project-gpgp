@@ -56,14 +56,6 @@ a.nav-link:hover {
     margin-bottom: 100px;
 }
 
-/* .card-header {
-    background-color: #B27685;
-} */
-
-/* .form-group > .form-control > option:hover {
-    color: yellow!important;
-} */
-
 #submit, .acct-btn {
     background-color: #6b3140;
     color: #ffffff;
@@ -98,4 +90,55 @@ a.nav-link:hover {
 
 #search-results {
     display: none;
+}
+
+/* ===== MEDIA QUERIES ===== */
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+    .card, .results-card {
+        width: 50%;
+        margin: 0 auto;
+        margin: 55px auto;
+        float: none;
+        margin-bottom: 100px;
+    }
+}
+
+@media screen and (min-width: 981px) and (max-width: 990px) {
+    .card, .results-card {
+        width: 50%;
+        margin: 0 auto;
+        margin: 55px auto;
+        float: none;
+        margin-bottom: 100px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 980px) {
+    .card, .results-card {
+        width: 75%;
+        margin: 0 auto;
+        margin: 55px auto;
+        float: none;
+        margin-bottom: 100px;
+    }
+}
+  
+@media screen and (min-width: 641px) and (max-width: 768px) { 
+    .card, .results-card {
+        width: 75%;
+        margin: 0 auto;
+        margin: 55px auto;
+        float: none;
+        margin-bottom: 100px;
+    }    
+}
+  
+@media screen and (max-width: 640px) {
+    .card, .results-card {
+        width: 75%;
+        margin: 0 auto;
+        margin: 55px auto;
+        float: none;
+        margin-bottom: 100px;
+    }
 }
