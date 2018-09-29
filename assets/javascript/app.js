@@ -19,7 +19,7 @@ $("#submit").on("click", function() {
 
     var queryUrl = "https://api.openbrewerydb.org/breweries?" + $.param(url) + "&page=1&per_page=10";
 
-    console.log(url);
+    console.log(queryUrl);
 
     //hide the search area
     $("#search-area").css("display", "none");
@@ -34,13 +34,14 @@ $("#submit").on("click", function() {
         //for loop through the results to display them
         for (var i = 0; i < response.length; i++) {
             //display the search results in the search-results area
+
             var resultsDiv = $("<div class='card results-card'>").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id);
             $("#search-results").append(resultsDiv);
             var nameDiv = $("<h4>").text(response[i].name).appendTo(resultsDiv);
             var phoneDiv = $("<h4>").text(response[i].phone).appendTo(resultsDiv);
             var typeDiv = $("<h5>").text(response[i].brewery_type).appendTo(resultsDiv);
             var addressDiv = $("<h5>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
-            var addressDiv = $("<h3>").text(response[i].website_url).appendTo(resultsDiv);
+            var websiteDiv = $("<h5>").text(response[i].website_url).appendTo(resultsDiv);
             var favoritesBtn = $("<input>").attr("type", "button").attr("value","Add To Favorites").addClass("btn btn-default").appendTo(resultsDiv);
 
             console.log(response[i].name);
@@ -112,4 +113,4 @@ function initMap() {
         });
       }
     }
-    // google.maps.event.addDomListener(window, 'load', initialize);
+    //google.maps.event.addDomListener(window, 'load', initialize);
