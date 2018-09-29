@@ -60,7 +60,7 @@ a.nav-link:hover {
     color: yellow!important;
 } */
 
-#submit {
+#submit, .acct-btn {
     background-color: #6b3140;
     color: #ffffff;
     border: none;
