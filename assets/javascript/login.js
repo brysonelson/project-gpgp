@@ -94,6 +94,24 @@ $("#log-out-btn").on("click", function() {
     });
 })
 
+//when you click the log out button
+$(document).on("click", "#logout-head-button", function() {
+
+    event.preventDefault();
+
+    //hide the login text
+    $("#login-screen").css("display", "none");
+    $("#login").css("display", "block");
+    
+    //use firebase to sign out the user
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        console.log("logged out");
+        }).catch(function(error) {
+        // An error happened.
+    });
+})
+
 
 //============================ Whenever Anyone Logs In Or Out ==================================
 
@@ -108,6 +126,10 @@ firebase.auth().onAuthStateChanged(function (user) {
         $("#main-button").on("click", function () {
             $("#main-button").attr("href", "search.html");
         })
+
+        //change the login button value
+        $("#login-head-button").css("display", "none");
+        $("#logout-head-button").css("display", "block");
 
         //show the login screen
         $("#login-screen").css("display", "block");
@@ -167,6 +189,9 @@ firebase.auth().onAuthStateChanged(function (user) {
         
         //or else...
     } else {
+
+        $("#login-head-button").css("display", "block");
+        $("#logout-head-button").css("display", "none");
         console.log("no User");
         $("#main-button").on("click", function () {
             $("#main-button").attr("href", "createAcct.html");
