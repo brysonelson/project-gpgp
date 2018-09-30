@@ -130,6 +130,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         //change the login button value
         $("#login-head-button").css("display", "none");
         $("#logout-head-button").css("display", "block");
+        $("#sign-up-button").css("display", "none");
 
         //show the login screen
         $("#login-screen").css("display", "block");
@@ -192,6 +193,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         $("#login-head-button").css("display", "block");
         $("#logout-head-button").css("display", "none");
+        $("#sign-up-button").css("display", "block");
         console.log("no User");
         $("#main-button").on("click", function () {
             $("#main-button").attr("href", "createAcct.html");
