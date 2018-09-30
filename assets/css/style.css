@@ -44,6 +44,20 @@ a.nav-link:hover {
     display: none;
 }
 
+#bars {
+    border-right: solid grey 1px;
+}
+
+#user-recipe-choices {
+    display: none;
+}
+
+.recipe-img {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+}
+
 .card, .results-card {
     color: #3D0A17;
     /* background-color: #e9ebee; */
