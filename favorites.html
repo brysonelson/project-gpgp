@@ -63,7 +63,7 @@
                     <a class="nav-link" href="login.html" id="login-head-button">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html" id="logout-head-button">Log Out</a>
+                    <a class="nav-link log-out-btn" href="login.html" id="logout-head-button">Log Out</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="createAcct.html" id="sign-up-button"><i class="fas fa-user-plus"></i> Sign Up</a>
@@ -74,7 +74,7 @@
         </div>
     </nav>
 
-    <!--Login Form-->
+    <!--favorites-->
     <div class="container">
 
         <div class="row">
@@ -86,29 +86,35 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-lg-6">
-                                <p class="text-center" id="bars">Bars</p>
+                                <p class="text-center" id="bar-favs">Bars</p>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-center">Recipies</p>
+                                <p class="text-center" id="recipe-favs">Recipies</p>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <form role="form">
                             <!--Where favorite bars get dumped-->
-                            <div class="form-group" id="user-choices">
+                            <div class="form-group" id="user-bar-choices">
 
                             </div>
                             <!--Where favorite recipies get dumped-->
                             <div class="form-group" id="user-recipe-choices">
 
-                                </div>
+                            </div>
+                            <div id="login-warning">
+
+                                <h3>Login First To Use Favorites</h3>
+                            </div>
                             <button type="submit" class="btn btn-default acct-btn" id="clear-favs-btn">Clear Favorites</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        
 
         <!--Login Screen Code.  Will be seperate page
     <div id="login-screen">

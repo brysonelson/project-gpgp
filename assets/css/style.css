@@ -58,6 +58,10 @@ a.nav-link:hover {
     margin: auto;
 }
 
+#bar-info {
+    display: none;
+}
+
 .card, .results-card {
     color: #3D0A17;
     /* background-color: #e9ebee; */
@@ -74,6 +78,10 @@ a.nav-link:hover {
     background-color: #6b3140;
     color: #ffffff;
     border: none;
+}
+
+#login-warning {
+    display: none;
 }
 
 #submit:hover, .acct-btn:hover {
@@ -104,6 +112,16 @@ a.nav-link:hover {
 
 #search-results {
     display: none;
+}
+
+#users-bar-info {
+    display: none;
+}
+
+#map_canvas {
+    width: 70% !important;
+    height: 45% !important;
+    margin: auto;
 }
 
 /* ===== MEDIA QUERIES ===== */
