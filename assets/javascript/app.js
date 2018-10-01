@@ -41,7 +41,7 @@ $("#submit").on("click", function() {
             var phoneDiv = $("<h4 class='location-phone'>").text(response[i].phone).appendTo(resultsDiv);
             var typeDiv = $("<h5 class='location-type'>").text("Type of Bar: " + response[i].brewery_type).appendTo(resultsDiv);
             var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
-            var websiteDiv = $("<h5 class='location-website'>").text(response[i].website_url).appendTo(resultsDiv);
+            var websiteDiv = $("<a class='location-website'>").attr("href", response[i].website_url).attr("target", "_blank").text(response[i].website_url).appendTo(resultsDiv);
             var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(resultsDiv);
 
             console.log(response[i].name);
@@ -158,6 +158,9 @@ $("#recipe-favs").on("click", function() {
   //hide the favorite bars html
   $("#user-bar-choices").css("display", "none");
 
+  $("#bar-favs").css("border-bottom", "none");
+  $("#recipe-favs").css("border-bottom", "solid 1px black");
+
 })
 
 //when you click on the favorite bars
@@ -169,6 +172,9 @@ $("#bar-favs").on("click", function() {
   //show the favorite bars html
   $("#user-bar-choices").css("display", "block");
 
+  $("#recipe-favs").css("border-bottom", "none");
+  $("#bar-favs").css("border-bottom", "solid 1px black");
+
 })
 
 //=============================== BACK TO SEARCH RESULTS ================================================
@@ -176,6 +182,7 @@ $("#bar-favs").on("click", function() {
 $("#back-to-results").on("click", function() {
   $("#search-results").css("display", "block");
   $("#bar-info").css("display", "none");
+  $("#users-bar-info").css("display", "none");
 })
 //======================= WHEN YOU CLICK ON A BAR IN THE RESULTS ========================================
 //var usersBarAddress;
@@ -214,6 +221,104 @@ $(document).on("click", ".results-card", function () {
   var geocoder;
   var map;
   var address = usersBarAddress;
+
+  initialize();
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+      },
+      navigationControl: true,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    //   debugger;
+    if (geocoder) {
+      geocoder.geocode({
+        'address': address
+      }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (status != google.maps.GeocoderStatus.ZERO_RESULTS) {
+            map.setCenter(results[0].geometry.location);
+
+            var infowindow = new google.maps.InfoWindow({
+              content: '<b>' + address + '</b>',
+              size: new google.maps.Size(150, 50)
+            });
+
+            var marker = new google.maps.Marker({
+              position: results[0].geometry.location,
+              map: map,
+              title: address
+            });
+            google.maps.event.addListener(marker, 'click', function () {
+              infowindow.open(map, marker);
+            });
+
+          } else {
+            alert("No results found");
+          }
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+    }
+  }
+  //google.maps.event.addDomListener(window, 'load', initialize);
+});
+
+
+//=============================== BACK TO FAVORITES ================================================
+
+$("#back-to-favorites").on("click", function() {
+  $("#users-fav-bar-info").css("display", "none");
+  $("#user-favorites").css("display", "block");
+  //$("#users-bar-info").css("display", "none");
+})
+
+//======================= WHEN YOU CLICK ON A BAR IN THE Favorites ========================================
+//var usersBarAddress;
+
+$(document).on("click", ".bar-fav-card", function () {
+
+  console.log("boo");
+  $("#user-favorites").css("display", "none");
+  $("#fav-bar-info").css("display", "block").empty();
+  $("#users-fav-bar-info").css("display", "block");
+  //$("#map_canvas").css("visibility", "block");
+
+  //store the users choice address for google maps
+  var usersFavBarAddress = $(this).find(".user-fav-bar-address").text();
+  console.log(usersFavBarAddress);
+
+  var usersFavBarDiv = $("<div class='card'>").appendTo($("#fav-bar-info"));
+
+  var usersFavBarName = $(this).find(".user-fav-bar-name").text();
+  console.log(usersFavBarName);
+  var usersFavBarNameDiv = $("<h1>").text(usersFavBarName).appendTo(usersFavBarDiv);
+
+  var usersFavBarPhone = $(this).find(".user-fav-bar-phone").text();
+  var usersFavBarNameDiv = $("<h4>").text(usersFavBarPhone).appendTo(usersFavBarDiv);
+
+  var usersFavBarType = $(this).find(".user-fav-bar-type").text();
+  var usersFavBarNameDiv = $("<h4>").text(usersFavBarType).appendTo(usersFavBarDiv);
+
+  var usersFavBarAddressResults = $(this).find(".user-fav-bar-address").text();
+  var usersFavBarNameDiv = $("<h4>").text(usersFavBarAddressResults).appendTo(usersFavBarDiv);
+
+  var usersFavBarWebsite = $(this).find(".user-fav-bar-url").text();
+  var usersFavBarNameDiv = $("<h4>").text(usersFavBarWebsite).appendTo(usersFavBarDiv);
+
+  //======================================= GOOGLE MAPS ===================================================
+
+  var geocoder;
+  var map;
+  var address = usersFavBarAddress;
 
   initialize();
   function initialize() {
