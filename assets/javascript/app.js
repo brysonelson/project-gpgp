@@ -1,4 +1,4 @@
-//When you click the search button
+//=========================== When you click the search button ==========================================
 $("#submit").on("click", function() {
 
     event.preventDefault();
@@ -37,11 +37,11 @@ $("#submit").on("click", function() {
 
             var resultsDiv = $("<div class='card results-card'>");
             $("#search-results").append(resultsDiv);
-            var nameDiv = $("<h4>").text(response[i].name).appendTo(resultsDiv);
-            var phoneDiv = $("<h4>").text(response[i].phone).appendTo(resultsDiv);
-            var typeDiv = $("<h5>").text(response[i].brewery_type).appendTo(resultsDiv);
-            var addressDiv = $("<h5>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
-            var websiteDiv = $("<h5>").text(response[i].website_url).appendTo(resultsDiv);
+            var nameDiv = $("<h4 class='location-name'>").text(response[i].name).appendTo(resultsDiv);
+            var phoneDiv = $("<h4 class='location-phone'>").text(response[i].phone).appendTo(resultsDiv);
+            var typeDiv = $("<h5 class='location-type'>").text("Type of Bar: " + response[i].brewery_type).appendTo(resultsDiv);
+            var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
+            var websiteDiv = $("<h5 class='location-website'>").text(response[i].website_url).appendTo(resultsDiv);
             var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(resultsDiv);
 
             console.log(response[i].name);
@@ -53,8 +53,8 @@ $("#submit").on("click", function() {
 })
 
 
-//Recipe API search
-//When you click the search button
+//===================== Recipe API search ===============================================================
+//===================== When you click the submit button for cocktail name ==============================
 $("#recipe-name-submit").on("click", function() {
 
   event.preventDefault();
@@ -82,14 +82,16 @@ $("#recipe-name-submit").on("click", function() {
 
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var recipeName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
+      var recipeImg= $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
       var recipeInstructions = $("<h4>").text("Instructions: " + response.drinks[i].strInstructions).appendTo(recipeResultsDiv);
+      var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").addClass("btn btn-default").appendTo(recipeResultsDiv);
 
       console.log(response.drinks[i]);
     };
   });
 });
 
-//When you click the search button
+//===================== When you click the submit button for alcohol type ==============================
 $("#recipe-alcohol-submit").on("click", function() {
 
   event.preventDefault();
@@ -113,15 +115,18 @@ $("#recipe-alcohol-submit").on("click", function() {
   }).then(function(response) {
     //for loop through the results to display them
     for (var i = 0; i < 11; i++) {
+
+      var alcoholId = response.drinks[i].idDrink;
       //display the search results in the search-results area
 
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var alcoholName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
       var recipeAlcoholImg = $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
+      var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").attr("data-id", "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId).addClass("btn btn-default").appendTo(recipeResultsDiv);
       console.log(response.drinks[i].strDrinkThumb);
       console.log(response.drinks[i]);
 
-      var alcoholId = response.drinks[i].idDrink;
+      
       var alcoholIdQueryUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId;
 
       //ajax request to get the instructions for the beverage id
@@ -140,31 +145,82 @@ $("#recipe-alcohol-submit").on("click", function() {
   });
 });
 
-  
 
-  
 
-  // Initialize and add the map to element ID map
-  function initMap() {
-    // The location of Uluru
-    //   var uluru = {lat: -25.344, lng: 131.036};
-    //   // The map, centered at Uluru
-    //   var map = new google.maps.Map(
-    //       document.getElementById('map'), {zoom: 4, center: uluru});
-    //   // The marker, positioned at Uluru
-    //   var marker = new google.maps.Marker({position: uluru, map: map});
-    initialize();
-  }
+//======================= SWITCHING BETWEEN BARS AND RECIPES FAVORITES ==================================
+
+//when you click on the favorite recipes
+$("#recipe-favs").on("click", function() {
+
+  //show the favorite recipes html
+  $("#user-recipe-choices").css("display", "block");
+
+  //hide the favorite bars html
+  $("#user-bar-choices").css("display", "none");
+
+})
+
+//when you click on the favorite bars
+$("#bar-favs").on("click", function() {
+
+  //hide the favorite recipes html
+  $("#user-recipe-choices").css("display", "none");
+
+  //show the favorite bars html
+  $("#user-bar-choices").css("display", "block");
+
+})
+
+//=============================== BACK TO SEARCH RESULTS ================================================
+
+$("#back-to-results").on("click", function() {
+  $("#search-results").css("display", "block");
+  $("#bar-info").css("display", "none");
+})
+//======================= WHEN YOU CLICK ON A BAR IN THE RESULTS ========================================
+//var usersBarAddress;
+
+$(document).on("click", ".results-card", function () {
+
+
+  $("#search-results").css("display", "none");
+  $("#bar-info").css("display", "block").empty();
+  $("#users-bar-info").css("display", "block");
+  //$("#map_canvas").css("visibility", "block");
+
+  //store the users choice address for google maps
+  var usersBarAddress = $(this).find(".location-url").text();
+  console.log(usersBarAddress);
+
+  var usersBarDiv = $("<div class='card'-head>").appendTo($("#bar-info"));
+
+  var usersBarName = $(this).find(".location-name").text();
+  var usersBarNameDiv = $("<h1>").text(usersBarName).appendTo(usersBarDiv);
+
+  var usersBarPhone = $(this).find(".location-phone").text();
+  var usersBarNameDiv = $("<h4>").text(usersBarPhone).appendTo(usersBarDiv);
+
+  var usersBarType = $(this).find(".location-type").text();
+  var usersBarNameDiv = $("<h4>").text(usersBarType).appendTo(usersBarDiv);
+
+  var usersBarAddressResults = $(this).find(".location-url").text();
+  var usersBarNameDiv = $("<h4>").text(usersBarAddressResults).appendTo(usersBarDiv);
+
+  var usersBarWebsite = $(this).find(".location-website").text();
+  var usersBarNameDiv = $("<h4>").text(usersBarWebsite).appendTo(usersBarDiv);
+
+  //======================================= GOOGLE MAPS ===================================================
 
   var geocoder;
   var map;
-  var address = "San Diego, CA";
+  var address = usersBarAddress;
 
+  initialize();
   function initialize() {
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var myOptions = {
-      zoom: 8,
+      zoom: 15,
       center: latlng,
       mapTypeControl: true,
       mapTypeControlOptions: {
@@ -206,4 +262,6 @@ $("#recipe-alcohol-submit").on("click", function() {
       });
     }
   }
-    //google.maps.event.addDomListener(window, 'load', initialize);
+  //google.maps.event.addDomListener(window, 'load', initialize);
+});
+
