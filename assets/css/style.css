@@ -122,6 +122,15 @@ a.nav-link:hover {
     width: 70% !important;
     height: 45% !important;
     margin: auto;
+    margin-bottom: 100px;
+}
+
+#bar-favs {
+    border-bottom: solid 1px black;
+}
+
+.bar-fav-card {
+    border: none;
 }
 
 /* ===== MEDIA QUERIES ===== */
