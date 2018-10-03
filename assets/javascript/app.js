@@ -80,11 +80,13 @@ $("#recipe-name-submit").on("click", function() {
     for (var i = 0; i < 11; i++) {
       //display the search results in the search-results area
 
+      var alcoholId = response.drinks[i].idDrink;
+
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var recipeName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
       var recipeImg= $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
       var recipeInstructions = $("<h4>").text("Instructions: " + response.drinks[i].strInstructions).appendTo(recipeResultsDiv);
-      var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").addClass("btn btn-default").appendTo(recipeResultsDiv);
+      var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").attr("data-id", "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId).addClass("btn btn-default").appendTo(recipeResultsDiv);
 
       console.log(response.drinks[i]);
     };

@@ -114,6 +114,10 @@ a.nav-link:hover {
     display: none;
 }
 
+#search-area {
+    opacity: .98;
+}
+
 #users-bar-info {
     display: none;
 }
