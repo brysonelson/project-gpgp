@@ -274,6 +274,24 @@ $(document).on("click", ".results-card", function () {
   //google.maps.event.addDomListener(window, 'load', initialize);
 });
 
+//==============================Geocoder for multiple address object==================================
+// https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc
+function getCoordFromAddress( addressText){
+  var addressURL = addressText.replace(' ', '+');
+  var query = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&address=" + addressURL;
+  $.ajax({
+    url: query,
+    method: "GET"
+  }).then(function(response){
+    var retObj = { 
+      position: response.geometry.location,
+      title: response.formatted_address
+  };
+    
+    return retObj;
+  })
+}
+
 
 //=============================== BACK TO FAVORITES ================================================
 
