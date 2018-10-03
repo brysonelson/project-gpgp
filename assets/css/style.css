@@ -94,6 +94,47 @@ a.nav-link:hover {
     box-shadow: inset 0 0 0 3px #6b3140;
 }
 
+.btn-standard {
+    background-color: #6b3140;
+    color: #ffffff;
+    border: none;   
+}
+
+.btn-standard:hover {
+    color: #B27685!important;
+    background: rgba(0,0,0,0);
+    box-shadow: inset 0 0 0 3px #6b3140;
+}
+
+#bar-favs:hover {
+    background-color: #591C2B;
+    color: #ffffff!important;
+}
+
+#recipe-favs:hover {
+    background-color: #591C2B;
+    color: #ffffff!important;
+}
+
+.user-fav-bar-url:hover {
+    background-color: #591C2B;
+    color: #ffffff!important;
+}
+
+.user-fav-bar-name {
+    text-align: center;
+    font-weight: bold;
+}
+
+.user-fav-bar-info {
+    text-align: center;
+}
+
+.user-fav-drink-name {
+    text-align: center;
+    font-weight: bold;
+}
+
 #submit:active, .acct-btn:active {
     background-color: #591C2B;
     color: #ffffff;

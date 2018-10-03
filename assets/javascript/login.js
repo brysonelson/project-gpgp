@@ -196,12 +196,12 @@ firebase.auth().onAuthStateChanged(function (user) {
                     userFavorite.appendTo($("#user-bar-choices"));
 
                     //create the divs to show the users favorites
-                    var nameDiv = $("<h4 class='user-fav-bar-name'>").text(response.name).appendTo(userFavorite);
-                    var phoneDiv = $("<h4 class='user-fav-bar-phone'>").text(response.phone).appendTo(userFavorite);
-                    var typeDiv = $("<h5 class='user-fav-bar-type'>").text(response.brewery_type).appendTo(userFavorite);
-                    var addressDiv = $("<h5 class='user-fav-bar-address'>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).appendTo(userFavorite);
-                    var websiteDiv = $("<h5 class='user-fav-bar-url'>").text(response.website_url).appendTo(userFavorite);
-                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default").appendTo(userFavorite);
+                    var nameDiv = $("<h3 class='user-fav-bar-name'>").text(response.name).appendTo(userFavorite);
+                    var phoneDiv = $("<h4 class='user-fav-bar-phone'>").text('Phone: ' + response.phone).addClass("user-fav-bar-info").appendTo(userFavorite);
+                    var typeDiv = $("<h5 class='user-fav-bar-type'>").text('Bar Type: ' + response.brewery_type).addClass("user-fav-bar-info").appendTo(userFavorite);
+                    var addressDiv = $("<h5 class='user-fav-bar-address'>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).addClass("user-fav-bar-info").appendTo(userFavorite);
+                    var websiteDiv = $("<h5 class='user-fav-bar-url'>").text(response.website_url).addClass("user-fav-bar-info").appendTo(userFavorite);
+                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
 
                 });
             };
@@ -228,15 +228,11 @@ firebase.auth().onAuthStateChanged(function (user) {
                     userFavorite.appendTo($("#user-recipe-choices"));
 
                     //create the divs to show the users favorites
-                    var nameDiv = $("<h4>").text(response.drinks[0].strDrink).appendTo(userFavorite);
-                    var recipeFavImg = $("<img class='m-auto'>").attr("src", response.drinks[0].strDrinkThumb).appendTo(userFavorite).css("width", "30%");
-                    //var recipeIngredients1 = $("<h5>").text(response.drinks[0].strIngredient1).appendTo(userData);
-                    //var recipeIngredients2 = $("<h5>").text(response.drinks[0].strIngredient2).appendTo(userData);
-                    //var recipeIngredients3 = $("<h5>").text(response.drinks[0].strIngredient3).appendTo(userData);
-                    //var recipeIngredients4 = $("<h5>").text(response.drinks[0].strIngredient4).appendTo(userData);
-                    //var recipeIngredients5 = $("<h5>").text(response.drinks[0].strIngredient5).appendTo(userData);
-                    var recipeInstructionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
-                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default").appendTo(userFavorite);
+
+                    var nameDiv = $("<h4>").text(response.drinks[0].strDrink).addClass("user-fav-drink-name").appendTo(userFavorite);
+                    var recipeInstrucrtionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
+                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
+
 
                 });
             };
