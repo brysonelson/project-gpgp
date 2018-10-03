@@ -1,3 +1,4 @@
+var addressblock = [];
 //=========================== When you click the search button ==========================================
 $("#submit").on("click", function() {
 
@@ -24,7 +25,7 @@ $("#submit").on("click", function() {
     //hide the search area
     $("#search-area").css("display", "none");
     $("#search-results").css("display", "block");
-    var addressblock = [];
+    
 
     //send the query URL using AJAX
     $.ajax({
@@ -192,6 +193,7 @@ $("#back-to-results").on("click", function() {
   $("#search-results").css("display", "block");
   $("#bar-info").css("display", "none");
   $("#users-bar-info").css("display", "none");
+  initMultiple(addressblock);
 })
 //======================= WHEN YOU CLICK ON A BAR IN THE RESULTS ========================================
 //var usersBarAddress;
@@ -245,7 +247,7 @@ $(document).on("click", ".results-card", function () {
       navigationControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
     //   debugger;
     if (geocoder) {
       geocoder.geocode({
@@ -420,7 +422,7 @@ $(document).on("click", ".bar-fav-card", function () {
       navigationControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
     //   debugger;
     if (geocoder) {
       geocoder.geocode({
