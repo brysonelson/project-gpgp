@@ -24,7 +24,7 @@ body {
 
 .navbar {
     padding: .05rem 1rem;
-    background-color: #6b3140!important;
+    background-color: #63192aef!important;
 }
 
 a.nav-link {
@@ -65,8 +65,8 @@ a.nav-link:hover {
 .card, .results-card {
     color: #3D0A17;
     /* background-color: #e9ebee; */
-    width: 35%;
-    /* opacity: 0.9; */
+    width: 50%;
+    opacity: 0.98;
     text-align: left;
     /* margin: 0 auto; */
     margin: 55px auto;
@@ -156,25 +156,13 @@ a.nav-link:hover {
 }
 
 #main-footer {
-    background-color: #6b3140!important;
+    background-color: #63192aef!important;
 }
 
 #logo {
     width: 15px;
     margin-top: -3px;
 }
-
-#search-results {
-    /* display: none; */
-}
-
-#search-area {
-    opacity: .98;
-}
-
-/* #users-bar-info {
-    display: none;
-} */
 
 #fav-bar-info {
     display: none;
@@ -188,14 +176,6 @@ a.nav-link:hover {
     display: none;
 }
 
-/* #map {
-    width: 70% !important;
-    height: 45% !important;
-    position: relative;
-    margin: auto;
-    margin-bottom: 100px;
-    display: none;
-} */
 
 #bar-favs {
     border-bottom: solid 1px black;
@@ -203,10 +183,21 @@ a.nav-link:hover {
 
 .bar-fav-card {
     border: none;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.fav-bar-more-info {
+    padding: 20px;
 }
 
 #back-to-results {
     display: none;
+}
+
+#map-three {
+    padding-bottom: 650px;
+    margin-bottom: 50px;
 }
 
 

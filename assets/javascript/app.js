@@ -205,7 +205,7 @@ $("#back-to-results").on("click", function() {
   //$("#bar-info").css("display", "none");
   //$("#users-bar-info").css("display", "none");
   console.log("test");
-  initMultiple(addressblock);
+  //initMultiple(addressblock);
   $('.slide-in-two').toggleClass('show');
   $("#back-to-results").css("display", "none");
   $(".slide-in-two").css("z-index", "0");
@@ -415,29 +415,29 @@ $(document).on("click", ".bar-fav-card", function () {
   $("#fav-bar-info").css("display", "block").empty();
   $("#users-fav-bar-info").css("display", "block");
   $("#back-to-favs").css("display", "block");
-  //$("#map_canvas").css("visibility", "block");
+  $("#map-three").css("display", "block");
 
   //store the users choice address for google maps
   var usersFavBarAddress = $(this).find(".user-fav-bar-address").text();
   console.log(usersFavBarAddress);
 
-  var usersFavBarDiv = $("<div class='card'>").appendTo($("#fav-bar-info"));
+  var usersFavBarDiv = $("<div class='card fav-bar-more-info'>").appendTo($("#fav-bar-info"));
 
   var usersFavBarName = $(this).find(".user-fav-bar-name").text();
   console.log(usersFavBarName);
-  var usersFavBarNameDiv = $("<h1>").text(usersFavBarName).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h1 class='user-fav-bar-name'>").text(usersFavBarName).appendTo(usersFavBarDiv).append($("<hr>"));
 
   var usersFavBarPhone = $(this).find(".user-fav-bar-phone").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarPhone).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarPhone).appendTo(usersFavBarDiv);
 
   var usersFavBarType = $(this).find(".user-fav-bar-type").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarType).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarType).appendTo(usersFavBarDiv);
 
   var usersFavBarAddressResults = $(this).find(".user-fav-bar-address").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarAddressResults).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarAddressResults).appendTo(usersFavBarDiv);
 
   var usersFavBarWebsite = $(this).find(".user-fav-bar-url").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarWebsite).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarWebsite).appendTo(usersFavBarDiv);
 
   //======================================= GOOGLE MAPS ===================================================
 
@@ -459,7 +459,7 @@ $(document).on("click", ".bar-fav-card", function () {
       navigationControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    map = new google.maps.Map(document.getElementById("map-three"), myOptions);
     //   debugger;
     if (geocoder) {
       geocoder.geocode({
