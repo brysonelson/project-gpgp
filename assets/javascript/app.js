@@ -73,10 +73,26 @@ $("#submit").on("click", function() {
 
 
 //===================== Recipe API search ===============================================================
+
+//========================= BACK TO RECIPE SEARCH =======================================================
+
+$("#back-to-recipe-search").on("click", function() {
+  $("#back-to-recipe-search").css("display", "none");
+
+  //show the recipe search area
+  $("#recipe-search-area").css("display", "block");
+
+  //hide the recipe results
+  $("#recipe-search-results").css("display", "none");
+  
+})
+
 //===================== When you click the submit button for cocktail name ==============================
 $("#recipe-name-submit").on("click", function() {
 
   event.preventDefault();
+
+  $("#back-to-recipe-search").css("display", "block");
 
   //store user inputs
   var recipeName = $("#cocktail-name").val().trim();
@@ -117,6 +133,8 @@ $("#recipe-alcohol-submit").on("click", function() {
 
   event.preventDefault();
 
+  $("#back-to-recipe-search").css("display", "block");
+
   //store user inputs
   var alcoholType = $("#alcohol-type").val().trim();
   //var alcoholType = $("#alcohol-type").val().trim();
@@ -143,6 +161,7 @@ $("#recipe-alcohol-submit").on("click", function() {
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var alcoholName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
       var recipeAlcoholImg = $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
+      var recipeInstructions = $("<h4>").text("Instructions: " + response.drinks[i].strInstructions).appendTo(recipeResultsDiv);
       var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").attr("data-id", "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId).addClass("btn btn-default").appendTo(recipeResultsDiv);
       console.log(response.drinks[i].strDrinkThumb);
       console.log(response.drinks[i]);

@@ -58,8 +58,22 @@ a.nav-link:hover {
     margin: auto;
 }
 
+#users-fav-bar-info {
+    margin-top: 10%;
+}
+
 #bar-info, #back-to-search {
     display: none;
+}
+
+#back-to-search {
+    background: #6b3140;
+    color: white;
+}
+
+#back-to-results {
+    background: #6b3140;
+    color: white;
 }
 
 .card, .results-card {
@@ -176,6 +190,40 @@ a.nav-link:hover {
     display: none;
 }
 
+#back-to-favs:hover {
+    background: #591C2B;
+    color: white;
+}
+
+#back-to-recipe-search {
+    display: none;
+}
+
+#back-to-recipe-search:hover {
+    background: #591C2B;
+    color: white;
+}
+
+#recipe-alcohol-submit {
+    background: #591C2B;
+    color: white;
+}
+
+#recipe-name-submit {
+    background: #591C2B;
+    color: white;
+}
+
+
+#recipe-search-results {
+    width: 50%;
+    margin: auto;
+}
+
+.fav-head-options:hover {
+    border-radius: 3px;
+}
+
 
 #bar-favs {
     border-bottom: solid 1px black;
@@ -207,6 +255,7 @@ a.nav-link:hover {
     position: absolute;
     overflow: hidden; /* to prevent scrollbar appearing */
     display: none;
+    border-radius: 3px;
   }
   
   .slide-in.from-left {
@@ -245,6 +294,7 @@ a.nav-link:hover {
     position: absolute;
     overflow: hidden; /* to prevent scrollbar appearing */
     display: none;
+    border-radius: 3px;
   }
 
   .slide-in-two.from-left-two {
