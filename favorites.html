@@ -2,29 +2,33 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <title>Bar Finder | Favorites</title>
+    <!-- <link rel="icon" href="assets/images/beer.png"> -->
+    <link rel="icon" href="assets/images/cocktail.png">
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Alegreya:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <!-- Link to Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <!-- Link to Semantic UI -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+    <!-- Link to the jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Link to Semantic UI Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+    <!-- Link to Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize">
 
-        <meta charset="UTF-8">
-        <title>Bar Finder | Favorites</title>
-        <!-- <link rel="icon" href="assets/images/beer.png"> -->
-        <link rel="icon" href="assets/images/cocktail.png">
-        <!-- Link to Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Alegreya:400,700" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-        <!-- Link to Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-            crossorigin="anonymous">
-        <!-- Link to the jQuery Library -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <!-- Link to Bootstrap-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-            crossorigin="anonymous">
-        <!-- Firebase Reference -->
-        <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize"></script>
-        <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
-        <style>
-            #map {
-
+    </script>
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
+    <style>
+        #map {
               width: 100%;
               height: 400px;
               background-color: grey;
@@ -71,8 +75,6 @@
                         Sign Up</a>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-            </form> -->
         </div>
     </nav>
 
@@ -125,29 +127,6 @@
     </div>
     <div id="map_canvas"></div>
 
-
-
-        <!--Login Screen Code.  Will be seperate page
-    <div id="login-screen">
-        
-        <h1>Welcome<span id="user-name"></span></h1>
-
-        <form>
-            <input type="button" value="test1" class="testbox">
-            <input type="button" value="test2" class="testbox">
-            <input type="button" value="test3" class="testbox">
-            <input type="button" value="test4" class="testbox"><br><br>
-        </form>
-      
-    
-        <h2>Favorites:</h2>
-
-        <div id="user-choices">
-
-        </div>
-    </div>
-    -->
-
         <!-- Start Footer -->
         <footer id="main-footer" class="fixed-bottom bg-dark">
                 <div class="container">
@@ -165,7 +144,6 @@
                 </div>
             </footer>
         <!-- End Footer -->
-
 
         <!--firebase, jquery, and javascript page references-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
