@@ -18,19 +18,19 @@ var uid;
 //======================== Creating New Accounts ==============================================
 
 //when you click Create Account
-$("#create-acct-btn").on("click", function() {
+$("#create-acct-btn").on("click", function () {
 
     event.preventDefault();
 
     //store the email and password
     var emailInput = $("#email-field").val().trim();
     var passInput = $("#password-field").val().trim();
-    
+
     console.log("test");
     console.log(emailInput);
 
     //use firebase to create and store the new user 
-    firebase.auth().createUserWithEmailAndPassword(emailInput, passInput).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(emailInput, passInput).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -47,13 +47,17 @@ $("#create-acct-btn").on("click", function() {
 //============================ Logging In Current Users ========================================
 
 //when you click the login button
-$("#login-btn").on("click", function() {
+$("#login-btn").on("click", function () {
 
     //$("#user-choices").empty();
 
     event.preventDefault();
+    // alert("You are logged in.");
+    $('#login-flash').show();
+    // $('#login-flash').delay(500).fadeIn('normal', function () {
+    //     $(this).delay(2500).fadeOut();
+    // });
 
-   
 
     //store the users email and pass to submit
     var emailInput = $("#email-field").val().trim();
@@ -63,30 +67,32 @@ $("#login-btn").on("click", function() {
     console.log(emailInput);
 
     //use firebase to find the user and log them in
-    firebase.auth().signInWithEmailAndPassword(emailInput, passInput).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(emailInput, passInput).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
 
         //alert the user if the pass/email is wrong
         alert(errorMessage);
+        // $("#exampleModal").css("display", "block");
+        // $("#exampleModal").catch(error);
+        // $('#exampleModal').text(errorMessage).modal('show');
         // ...
 
     });
 
-    
-     //this needs to be fixed to if there are any error messages, window does not load.
-     function goToSearch() {
+    //this needs to be fixed to if there are any error messages, window does not load.
+    function goToSearch() {
         window.location = "search.html";
-     }
-     var searchDelay = setTimeout(goToSearch, 1000);
+    }
+    var searchDelay = setTimeout(goToSearch, 1000);
 })
 
 
 //============================= Logging Out Users ==============================================
 
 //when you click the log out button
-$(".log-out-btn").on("click", function() {
+$(".log-out-btn").on("click", function () {
 
     event.preventDefault();
 
@@ -94,30 +100,32 @@ $(".log-out-btn").on("click", function() {
     //hide the login text
     $("#login-screen").css("display", "none");
     $("#login").css("display", "block");
-    
+
     //use firebase to sign out the user
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(function () {
         // Sign-out successful.
         console.log("logged out");
-        }).catch(function(error) {
+    }).catch(function (error) {
         // An error happened.
     });
 })
 
 //when you click the log out button
-$(document).on("click", "#logout-head-button", function() {
+$(document).on("click", "#logout-head-button", function () {
 
     event.preventDefault();
+    // alert("Logged you out!");
+    $('#logout-flash').show();
 
     //hide the login text
     $("#login-screen").css("display", "none");
     $("#login").css("display", "block");
-    
+
     //use firebase to sign out the user
-    firebase.auth().signOut().then(function() {
+    firebase.auth().signOut().then(function () {
         // Sign-out successful.
         console.log("logged out");
-        }).catch(function(error) {
+    }).catch(function (error) {
         // An error happened.
     });
 })
@@ -166,7 +174,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
             //store the users data from firebase
             var userData = Object.values(user.val());
-            
+
             //for loop through the users choices in firebase and send the URL with AJAX to get full results
             for (var i = 0; i < userData.length; i++) {
                 var favoriteUrl = userData[i].favoriteBar;
@@ -234,7 +242,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             };
 
         });
-        
+
         //or else...
     } else {
         $("#login-warning").css("display", "block");
@@ -252,7 +260,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 //============================= When The User Makes A Bar Choice =====================================
 
 //when the logged in user clicks a checkbox
-$(document).on("click", ".favorites-button", function() {
+$(document).on("click", ".favorites-button", function () {
 
     //$("#user-choices").empty();
 
@@ -267,13 +275,13 @@ $(document).on("click", ".favorites-button", function() {
     var storesRef = rootRef.child('users').child(uid).push({
         favoriteBar: userBarChoice
     });
-       
+
 });
 
 //============================= When The User Makes A Recipe Choice =====================================
 
 //when the logged in user clicks a checkbox
-$(document).on("click", ".recipes-button", function() {
+$(document).on("click", ".recipes-button", function () {
 
     //$("#user-choices").empty();
 
@@ -288,11 +296,11 @@ $(document).on("click", ".recipes-button", function() {
     var storesRef = rootRef.child('users').child(uid).push({
         favoriteRecipe: userRecipeChoice
     });
-       
+
 });
 
 //========================== When a user click to clear favorites ==================
-$(document).on("click", "#clear-favs-btn", function() {
+$(document).on("click", "#clear-favs-btn", function () {
 
     //prevent the page from reloading
     event.preventDefault();
@@ -302,5 +310,5 @@ $(document).on("click", "#clear-favs-btn", function() {
 
     //make sure the screen clears
     $("#user-choices").empty();
-       
+
 });

@@ -84,6 +84,10 @@ a.nav-link:hover {
     display: none;
 }
 
+/* #login-flash {
+    display: none;
+} */
+
 #submit:hover, .acct-btn:hover {
     color: #B27685!important;
     background: rgba(0,0,0,0);
@@ -134,7 +138,7 @@ a.nav-link:hover {
     display: none;
 }
 
-#map_canvas {
+#map {
     width: 70% !important;
     height: 45% !important;
     margin: auto;
