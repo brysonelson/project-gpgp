@@ -4,6 +4,8 @@ $("#submit").on("click", function() {
 
     event.preventDefault();
 
+    $("#map").css("display", "block");
+
     //store user inputs
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
@@ -209,7 +211,7 @@ $(document).on("click", ".results-card", function () {
   $("#search-results").css("display", "none");
   $("#bar-info").css("display", "block").empty();
   $("#users-bar-info").css("display", "block");
-  $("#map_canvas").css("display", "block");
+  
 
   //store the users choice address for google maps
   var usersBarAddress = $(this).find(".location-url").text();
