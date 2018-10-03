@@ -167,11 +167,24 @@ a.nav-link:hover {
     display: none;
 }
 
-#map_canvas {
+#fav-bar-info {
+    display: none;
+}
+
+#sign-up-button, #login-head-button {
+    display: none;
+}
+
+#back-to-favs {
+    display: none;
+}
+
+#map {
     width: 70% !important;
     height: 45% !important;
     margin: auto;
     margin-bottom: 100px;
+    display: none;
 }
 
 #bar-favs {
