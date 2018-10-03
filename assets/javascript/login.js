@@ -74,8 +74,12 @@ $("#login-btn").on("click", function() {
 
     });
 
+    
      //this needs to be fixed to if there are any error messages, window does not load.
-     window.location = "search.html";
+     function goToSearch() {
+        window.location = "search.html";
+     }
+     var searchDelay = setTimeout(goToSearch, 1000);
 })
 
 
