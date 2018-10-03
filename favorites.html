@@ -19,6 +19,7 @@
             crossorigin="anonymous">
         <!-- Firebase Reference -->
         <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize"></script>
         <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
         <style>
             #map {
@@ -113,11 +114,13 @@
         </div>
     </div>
     <div class="container" id="users-fav-bar-info">
+        <button id="back-to-favs">Back to Favorites</button>
         <div class="container" id="fav-bar-info">
-            
+                
         </div>
     
     </div>
+    <div id="map_canvas"></div>
 
         
 

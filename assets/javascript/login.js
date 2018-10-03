@@ -221,7 +221,13 @@ firebase.auth().onAuthStateChanged(function (user) {
 
                     //create the divs to show the users favorites
                     var nameDiv = $("<h4>").text(response.drinks[0].strDrink).appendTo(userFavorite);
-                    var recipeInstrucrtionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
+                    var recipeFavImg = $("<img class='m-auto'>").attr("src", response.drinks[0].strDrinkThumb).appendTo(userFavorite).css("width", "30%");
+                    //var recipeIngredients1 = $("<h5>").text(response.drinks[0].strIngredient1).appendTo(userData);
+                    //var recipeIngredients2 = $("<h5>").text(response.drinks[0].strIngredient2).appendTo(userData);
+                    //var recipeIngredients3 = $("<h5>").text(response.drinks[0].strIngredient3).appendTo(userData);
+                    //var recipeIngredients4 = $("<h5>").text(response.drinks[0].strIngredient4).appendTo(userData);
+                    //var recipeIngredients5 = $("<h5>").text(response.drinks[0].strIngredient5).appendTo(userData);
+                    var recipeInstructionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
                     var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default").appendTo(userFavorite);
 
                 });

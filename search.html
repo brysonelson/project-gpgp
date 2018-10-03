@@ -19,15 +19,7 @@
         crossorigin="anonymous">
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize">
-
-
-
-
-
-
-
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&callback=initialize"></script>
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
     <style>
         #map {
@@ -115,7 +107,7 @@
                                     <option>Planning</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-default" id="submit">Submit</button>
+                            <a href="./search-results.html"> <button type="submit" class="btn btn-default" id="submit">Submit</button></a>
                             <a  class="float-right mt-1" href="./recipe.html" id="looking-for-recipe">Trying to Make Drinks At Home?</a>
                         </form>
                     </div>
@@ -124,6 +116,7 @@
         </div>
 
     </div>
+
     <div id="search-results">
 
     </div>
@@ -137,26 +130,21 @@
     </div>
     <div id="map_canvas"></div>
     
+    
+<!-- Start Footer -->
 
-        <!-- Start Footer -->
-
-                        </div>
-
-                        <!-- Start Footer -->
-
-                        <footer id="main-footer" class="fixed-bottom bg-dark">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col text-center">
-                                        <div class="py-3">
-                                            <p class="lead mb-0" id="gpgp">&copy; Copyright 2018 Git Push Git Paid <img
-                                                    src="assets/images/GPGP logo white.png" id="logo"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-    </footer>
+<footer id="main-footer" class="fixed-bottom bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <div class="py-3">
+                    <p class="lead mb-0" id="gpgp">&copy; Copyright 2018 Git Push Git Paid <img src="assets/images/GPGP logo white.png"
+                            id="logo"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <!-- End Footer -->
 
