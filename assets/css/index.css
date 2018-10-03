@@ -19,12 +19,19 @@ body {
 #landing-header h1 {
     font-family: 'Alegreya', serif;
     font-size: 50px;
+    font-size: 4em;
     letter-spacing: .05em;
     color: #ffffff;
     text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
 				 0px 8px 13px rgba(0,0,0,0.1),
 				 0px 18px 23px rgba(0,0,0,0.1);
 }
+
+/* hr {
+	width: 700px;
+	border-top: 1px solid #ffffff;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+} */
   
 .slideshow { 
     position: fixed;
