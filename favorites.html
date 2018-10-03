@@ -43,7 +43,7 @@
 
 <body>
     <!-- Start Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <span class="navbar-brand mb-1 h1">
             <!-- <a class="navbar-brand" href="#"><i class="fas fa-beer fa-flip-horizontal"></i> Bar Finder</a> -->
             <a class="navbar-brand" id="brand" href="index.html"><i class="fas fa-cocktail fa-flip-horizontal"></i> Bar
@@ -87,12 +87,12 @@
                         <strong>Favorites</strong>
                     </div>
                     <div class="card-header">
-                        <div class="row">
+                        <div class="row fav-head-options">
                             <div class="col-lg-6">
-                                <p class="text-center" id="bar-favs">Bars</p>
+                                <p class="text-center fav-head-options" id="bar-favs">Bars</p>
                             </div>
                             <div class="col-lg-6">
-                                <p class="text-center" id="recipe-favs">Recipies</p>
+                                <p class="text-center fav-head-options" id="recipe-favs">Recipies</p>
                             </div>
                         </div>
                     </div>
@@ -118,30 +118,30 @@
         </div>
     </div>
     <div class="container" id="users-fav-bar-info">
-        <button id="back-to-favs">Back to Favorites</button>
+        <button class="btn" id="back-to-favs">Back to Favorites</button>
         <div class="container" id="fav-bar-info">
                 
         </div>
-    
+        <div id="map-three"></div>
     </div>
-    <div id="map_canvas"></div>
+    
 
         <!-- Start Footer -->
         <footer id="main-footer" class="fixed-bottom bg-dark">
-            <div class="container">
-                <div class="row">
-                    <a href="https://github.com/brysonelson/project-gpgp" target="_blank"><img src="assets/images/GPGP logo white.png"
-                            style="margin-top: 7px;" data-title="Bar Finder" data-content="View project on GitHub"
-                            class="ui avatar image activating element"></a>
-                    <div class="col text-center">
-                        <div class="py-3">
-                            <p class="lead mb-0" id="gpgp">&copy; Copyright 2018 Git Push Git Paid <img src="assets/images/GPGP logo white.png"
-                                    id="logo"></p>
+                <div class="container">
+                    <div class="row">
+                        <a href="https://github.com/brysonelson/project-gpgp" target="_blank"><img src="assets/images/GPGP logo white.png"
+                                style="margin-top: 7px;" data-title="Bar Finder" data-content="View project on GitHub"
+                                class="ui avatar image activating element"></a>
+                        <div class="col text-center">
+                            <div class="py-3">
+                                <p class="lead mb-0" id="gpgp">&copy; Copyright 2018 Git Push Git Paid <img src="assets/images/GPGP logo white.png"
+                                        id="logo"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
         <!-- End Footer -->
 
         <!--firebase, jquery, and javascript page references-->

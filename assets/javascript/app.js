@@ -4,6 +4,7 @@ $("#submit").on("click", function() {
 
     event.preventDefault();
 
+    $(".slide-in").css("display", "block");
     $("#map").css("display", "block");
 
     //store user inputs
@@ -25,8 +26,8 @@ $("#submit").on("click", function() {
     console.log(queryUrl);
 
     //hide the search area
-    $("#search-area").css("display", "none");
-    $("#search-results").css("display", "block");
+    //$("#search-area").css("display", "none");
+    //$("#search-results").css("display", "block");
     
 
     //send the query URL using AJAX
@@ -40,7 +41,7 @@ $("#submit").on("click", function() {
             //display the search results in the search-results area
             var innerArray = [];
 
-            var resultsDiv = $("<div class='card'>");
+            var resultsDiv = $("<div class='card results-div-card'>");
             $("#search-results").append(resultsDiv);
             var individualResults = $("<div class='results-card'>").appendTo(resultsDiv);
             var nameDiv = $("<h4 class='location-name'>").text(response[i].name).appendTo(individualResults);
@@ -50,17 +51,20 @@ $("#submit").on("click", function() {
             var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(individualResults);
             innerArray[0] = (response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code);
             var websiteDiv = $("<a class='location-website'>").attr("href", response[i].website_url).attr("target", "_blank").text(response[i].website_url).appendTo(individualResults);
+            var favBtnDiv = $("<div>").appendTo(resultsDiv);
             var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(favBtnDiv);
             addressblock.push(innerArray);
 
-            var favBtnDiv = $("<div>").appendTo(resultsDiv);
-            var favoritesBtn = $("<input class='favorites-button btn-btn-default'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(favBtnDiv);
+            
+            
            
 
             console.log(response[i].name);
         }
         // console.log(addressblock);
         initMultiple(addressblock);
+        $('.slide-in').toggleClass('show');
+        $("#back-to-search").css("display", "block");
     });
 
 
@@ -69,10 +73,26 @@ $("#submit").on("click", function() {
 
 
 //===================== Recipe API search ===============================================================
+
+//========================= BACK TO RECIPE SEARCH =======================================================
+
+$("#back-to-recipe-search").on("click", function() {
+  $("#back-to-recipe-search").css("display", "none");
+
+  //show the recipe search area
+  $("#recipe-search-area").css("display", "block");
+
+  //hide the recipe results
+  $("#recipe-search-results").css("display", "none");
+  
+})
+
 //===================== When you click the submit button for cocktail name ==============================
 $("#recipe-name-submit").on("click", function() {
 
   event.preventDefault();
+
+  $("#back-to-recipe-search").css("display", "block");
 
   //store user inputs
   var recipeName = $("#cocktail-name").val().trim();
@@ -113,6 +133,8 @@ $("#recipe-alcohol-submit").on("click", function() {
 
   event.preventDefault();
 
+  $("#back-to-recipe-search").css("display", "block");
+
   //store user inputs
   var alcoholType = $("#alcohol-type").val().trim();
   //var alcoholType = $("#alcohol-type").val().trim();
@@ -139,6 +161,7 @@ $("#recipe-alcohol-submit").on("click", function() {
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var alcoholName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
       var recipeAlcoholImg = $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
+      var recipeInstructions = $("<h4>").text("Instructions: " + response.drinks[i].strInstructions).appendTo(recipeResultsDiv);
       var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").attr("data-id", "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId).addClass("btn btn-default").appendTo(recipeResultsDiv);
       console.log(response.drinks[i].strDrinkThumb);
       console.log(response.drinks[i]);
@@ -197,10 +220,24 @@ $("#bar-favs").on("click", function() {
 //=============================== BACK TO SEARCH RESULTS ================================================
 
 $("#back-to-results").on("click", function() {
-  $("#search-results").css("display", "block");
-  $("#bar-info").css("display", "none");
-  $("#users-bar-info").css("display", "none");
-  initMultiple(addressblock);
+  //$("#search-results").css("display", "block");
+  //$("#bar-info").css("display", "none");
+  //$("#users-bar-info").css("display", "none");
+  console.log("test");
+  //initMultiple(addressblock);
+  $('.slide-in-two').toggleClass('show');
+  $("#back-to-results").css("display", "none");
+  $(".slide-in-two").css("z-index", "0");
+  $(".slide-in").css("z-index", "10");
+})
+
+$(document).on("click", "#back-to-search", function() {
+  $('.slide-in').toggleClass('show');
+  $("#search-area").css("z-index", "10");
+  $(".slide-in-two").css("z-index", "0");
+  $(".slide-in").css("z-index", "0");
+  $(".slide-in").css("display", "none");
+  $(".slide-in-two").css("display", "none");
 })
 //======================= WHEN YOU CLICK ON A BAR IN THE RESULTS ========================================
 //var usersBarAddress;
@@ -208,16 +245,17 @@ $("#back-to-results").on("click", function() {
 $(document).on("click", ".results-card", function () {
 
 
-  $("#search-results").css("display", "none");
+  //$("#search-results").css("display", "none");
   $("#bar-info").css("display", "block").empty();
   $("#users-bar-info").css("display", "block");
+  $(".slide-in-two").css("display", "block");
   
 
   //store the users choice address for google maps
   var usersBarAddress = $(this).find(".location-url").text();
   console.log(usersBarAddress);
 
-  var usersBarDiv = $("<div class='card'-head>").appendTo($("#bar-info"));
+  var usersBarDiv = $("<div class='card results-card'>").appendTo($("#bar-info"));
 
   var usersBarName = $(this).find(".location-name").text();
   var usersBarNameDiv = $("<h1>").text(usersBarName).appendTo(usersBarDiv);
@@ -233,6 +271,11 @@ $(document).on("click", ".results-card", function () {
 
   var usersBarWebsite = $(this).find(".location-website").text();
   var usersBarNameDiv = $("<h4>").text(usersBarWebsite).appendTo(usersBarDiv);
+
+  $('.slide-in-two').toggleClass('show');
+  $("#back-to-results").css("display", "flex");
+  $(".slide-in-two").css("z-index", "10");
+  $(".slide-in").css("z-index", "0");
 
   //======================================= GOOGLE MAPS ===================================================
 
@@ -254,7 +297,7 @@ $(document).on("click", ".results-card", function () {
       navigationControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    map = new google.maps.Map(document.getElementById("map-two"), myOptions);
     //   debugger;
     if (geocoder) {
       geocoder.geocode({
@@ -391,29 +434,29 @@ $(document).on("click", ".bar-fav-card", function () {
   $("#fav-bar-info").css("display", "block").empty();
   $("#users-fav-bar-info").css("display", "block");
   $("#back-to-favs").css("display", "block");
-  //$("#map_canvas").css("visibility", "block");
+  $("#map-three").css("display", "block");
 
   //store the users choice address for google maps
   var usersFavBarAddress = $(this).find(".user-fav-bar-address").text();
   console.log(usersFavBarAddress);
 
-  var usersFavBarDiv = $("<div class='card'>").appendTo($("#fav-bar-info"));
+  var usersFavBarDiv = $("<div class='card fav-bar-more-info'>").appendTo($("#fav-bar-info"));
 
   var usersFavBarName = $(this).find(".user-fav-bar-name").text();
   console.log(usersFavBarName);
-  var usersFavBarNameDiv = $("<h1>").text(usersFavBarName).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h1 class='user-fav-bar-name'>").text(usersFavBarName).appendTo(usersFavBarDiv).append($("<hr>"));
 
   var usersFavBarPhone = $(this).find(".user-fav-bar-phone").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarPhone).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarPhone).appendTo(usersFavBarDiv);
 
   var usersFavBarType = $(this).find(".user-fav-bar-type").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarType).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarType).appendTo(usersFavBarDiv);
 
   var usersFavBarAddressResults = $(this).find(".user-fav-bar-address").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarAddressResults).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarAddressResults).appendTo(usersFavBarDiv);
 
   var usersFavBarWebsite = $(this).find(".user-fav-bar-url").text();
-  var usersFavBarNameDiv = $("<h4>").text(usersFavBarWebsite).appendTo(usersFavBarDiv);
+  var usersFavBarNameDiv = $("<h4 class='user-fav-bar-info'>").text(usersFavBarWebsite).appendTo(usersFavBarDiv);
 
   //======================================= GOOGLE MAPS ===================================================
 
@@ -435,7 +478,7 @@ $(document).on("click", ".bar-fav-card", function () {
       navigationControl: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    map = new google.maps.Map(document.getElementById("map-three"), myOptions);
     //   debugger;
     if (geocoder) {
       geocoder.geocode({
