@@ -84,9 +84,12 @@ a.nav-link:hover {
     display: none;
 }
 
-/* #login-flash {
-    display: none;
-} */
+#error-flash {
+    text-align: center;
+    padding: 10px;
+    width: 25%;
+    margin-left: 300px;
+}
 
 #submit:hover, .acct-btn:hover {
     color: #B27685!important;

@@ -26,130 +26,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" />
 
@@ -172,7 +48,9 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+        <div class="ui mini red hidden floating message" id="error-flash">
+            <p>Error logging in. Please try again.</p>
+        </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -193,20 +71,11 @@
                         Sign Up</a>
                 </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-            </form> -->
         </div>
     </nav>
 
     <!--Login Form-->
     <div class="container">
-        <br>
-        <!-- <div class="ui green hidden floating message" id="login-flash">
-            <p>You are logged in.</p>
-        </div> -->
-        <div class="ui green hidden floating message" id="logout-flash">
-            <p>Logged you out!.</p>
-        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -225,61 +94,11 @@
                                 <input type="password" class="form-control" id="password-field" placeholder="Password">
                             </div>
                             <button type="submit" class="btn btn-default acct-btn" id="login-btn">Login</button>
-                            <button type="submit" class="btn btn-default acct-btn" class="log-out-btn">Log Out</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-default acct-btn" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button> -->
-
-        <!-- Modal instead of Alert Message -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><strong>Error</strong></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        The e-mail address is badly formatted.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default acct-btn" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!--Login Screen Code.  Will be seperate page
-    <div id="login-screen">
-        
-        <h1>Welcome<span id="user-name"></span></h1>
-
-        <form>
-            <input type="button" value="test1" class="testbox">
-            <input type="button" value="test2" class="testbox">
-            <input type="button" value="test3" class="testbox">
-            <input type="button" value="test4" class="testbox"><br><br>
-        </form>
-      
-    
-        <h2>Favorites:</h2>
-
-        <div id="user-choices">
-
-        </div>
-    </div>
-    -->
 
         <!-- Start Footer -->
         <footer id="main-footer" class="fixed-bottom bg-dark">
@@ -298,7 +117,6 @@
             </div>
         </footer>
         <!-- End Footer -->
-
 
         <!--firebase, jquery, and javascript page references-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

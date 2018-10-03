@@ -14,7 +14,6 @@ var database = firebase.database();
 //create a var to store the users ID from firebase
 var uid;
 
-
 //======================== Creating New Accounts ==============================================
 
 //when you click Create Account
@@ -53,7 +52,7 @@ $("#login-btn").on("click", function () {
 
     event.preventDefault();
     // alert("You are logged in.");
-    $('#login-flash').show();
+    // $('#login-flash').show();
     // $('#login-flash').delay(500).fadeIn('normal', function () {
     //     $(this).delay(2500).fadeOut();
     // });
@@ -67,25 +66,27 @@ $("#login-btn").on("click", function () {
     console.log(emailInput);
 
     //use firebase to find the user and log them in
-    firebase.auth().signInWithEmailAndPassword(emailInput, passInput).catch(function (error) {
+    firebase.auth().signInWithEmailAndPassword(emailInput, passInput).then(function(response) {
+        var searchDelay = setTimeout(goToSearch, 1000);
+    }
+
+    ).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
 
         //alert the user if the pass/email is wrong
-        alert(errorMessage);
-        // $("#exampleModal").css("display", "block");
-        // $("#exampleModal").catch(error);
-        // $('#exampleModal').text(errorMessage).modal('show');
-        // ...
-
+        // alert(errorMessage);
+        $('#error-flash').delay(500).fadeIn('normal', function () {
+            $(this).delay(2500).fadeOut();
+        });
     });
 
     //this needs to be fixed to if there are any error messages, window does not load.
     function goToSearch() {
         window.location = "search.html";
     }
-    var searchDelay = setTimeout(goToSearch, 1000);
+    // var searchDelay = setTimeout(goToSearch, 1000);
 })
 
 
@@ -115,7 +116,7 @@ $(document).on("click", "#logout-head-button", function () {
 
     event.preventDefault();
     // alert("Logged you out!");
-    $('#logout-flash').show();
+    // $('#logout-flash').show();
 
     //hide the login text
     $("#login-screen").css("display", "none");
