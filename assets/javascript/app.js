@@ -4,6 +4,8 @@ $("#submit").on("click", function() {
 
     event.preventDefault();
 
+    $("#map").css("display", "block");
+
     //store user inputs
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
@@ -38,17 +40,22 @@ $("#submit").on("click", function() {
             //display the search results in the search-results area
             var innerArray = [];
 
-            var resultsDiv = $("<div class='card results-card'>");
+            var resultsDiv = $("<div class='card'>");
             $("#search-results").append(resultsDiv);
-            var nameDiv = $("<h4 class='location-name'>").text(response[i].name).appendTo(resultsDiv);
+            var individualResults = $("<div class='results-card'>").appendTo(resultsDiv);
+            var nameDiv = $("<h4 class='location-name'>").text(response[i].name).appendTo(individualResults);
             innerArray[1] = response[i].name;
-            var phoneDiv = $("<h4 class='location-phone'>").text(response[i].phone).appendTo(resultsDiv);
-            var typeDiv = $("<h5 class='location-type'>").text("Type of Bar: " + response[i].brewery_type).appendTo(resultsDiv);
-            var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
+            var phoneDiv = $("<h4 class='location-phone'>").text(response[i].phone).appendTo(individualResults);
+            var typeDiv = $("<h5 class='location-type'>").text("Type of Bar: " + response[i].brewery_type).appendTo(individualResults);
+            var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(individualResults);
             innerArray[0] = (response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code);
-            var websiteDiv = $("<a class='location-website'>").attr("href", response[i].website_url).attr("target", "_blank").text(response[i].website_url).appendTo(resultsDiv);
-            var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(resultsDiv);
+            var websiteDiv = $("<a class='location-website'>").attr("href", response[i].website_url).attr("target", "_blank").text(response[i].website_url).appendTo(individualResults);
+            var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(favBtnDiv);
             addressblock.push(innerArray);
+
+            var favBtnDiv = $("<div>").appendTo(resultsDiv);
+            var favoritesBtn = $("<input class='favorites-button btn-btn-default'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(favBtnDiv);
+           
 
             console.log(response[i].name);
         }
@@ -204,7 +211,7 @@ $(document).on("click", ".results-card", function () {
   $("#search-results").css("display", "none");
   $("#bar-info").css("display", "block").empty();
   $("#users-bar-info").css("display", "block");
-  //$("#map_canvas").css("visibility", "block");
+  
 
   //store the users choice address for google maps
   var usersBarAddress = $(this).find(".location-url").text();
@@ -369,6 +376,11 @@ $("#back-to-favorites").on("click", function() {
   //$("#users-bar-info").css("display", "none");
 })
 
+$("#back-to-favs").on("click", function() {
+  $("#users-fav-bar-info").css("display", "none");
+  $("#user-favorites").css("display", "block");
+  //$("#users-bar-info").css("display", "none");
+})
 //======================= WHEN YOU CLICK ON A BAR IN THE Favorites ========================================
 //var usersBarAddress;
 
@@ -378,6 +390,7 @@ $(document).on("click", ".bar-fav-card", function () {
   $("#user-favorites").css("display", "none");
   $("#fav-bar-info").css("display", "block").empty();
   $("#users-fav-bar-info").css("display", "block");
+  $("#back-to-favs").css("display", "block");
   //$("#map_canvas").css("visibility", "block");
 
   //store the users choice address for google maps
