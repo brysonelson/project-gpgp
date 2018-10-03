@@ -24,6 +24,7 @@ $("#submit").on("click", function() {
     //hide the search area
     $("#search-area").css("display", "none");
     $("#search-results").css("display", "block");
+    var addressblock = [];
 
     //send the query URL using AJAX
     $.ajax({
@@ -34,18 +35,24 @@ $("#submit").on("click", function() {
         //for loop through the results to display them
         for (var i = 0; i < response.length; i++) {
             //display the search results in the search-results area
+            var innerArray = [];
 
             var resultsDiv = $("<div class='card results-card'>");
             $("#search-results").append(resultsDiv);
             var nameDiv = $("<h4 class='location-name'>").text(response[i].name).appendTo(resultsDiv);
+            innerArray[1] = response[i].name;
             var phoneDiv = $("<h4 class='location-phone'>").text(response[i].phone).appendTo(resultsDiv);
             var typeDiv = $("<h5 class='location-type'>").text("Type of Bar: " + response[i].brewery_type).appendTo(resultsDiv);
             var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(resultsDiv);
+            innerArray[0] = (response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code);
             var websiteDiv = $("<a class='location-website'>").attr("href", response[i].website_url).attr("target", "_blank").text(response[i].website_url).appendTo(resultsDiv);
             var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(resultsDiv);
+            addressblock.push(innerArray);
 
             console.log(response[i].name);
         }
+        // console.log(addressblock);
+        initMultiple(addressblock);
     });
 
 
@@ -275,21 +282,80 @@ $(document).on("click", ".results-card", function () {
 });
 
 //==============================Geocoder for multiple address object==================================
+var locations = [];
+var multiMap, infowindow;
+
 // https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc
-function getCoordFromAddress( addressText){
+function getCoordFromAddress( addressText, barName){
   var addressURL = addressText.replace(' ', '+');
   var query = "https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDBO4yh7_oD4WVhGQFOgzYm9s9XW7LQqUc&address=" + addressURL;
   $.ajax({
     url: query,
     method: "GET"
   }).then(function(response){
+    // console.log(response);
     var retObj = { 
-      position: response.geometry.location,
-      title: response.formatted_address
+      lat: response.results[0].geometry.location.lat,
+      lng: response.results[0].geometry.location.lng,
   };
-    
-    return retObj;
+    // alert(retObj);
+    locations.push( retObj);
+    // console.log(locations);
+    //set center
+    multiMap.setCenter({lat: retObj.lat, lng: retObj.lng})
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(retObj.lat, retObj.lng),
+      map: multiMap
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker) {
+      return function() {
+        infowindow.setContent(barName);
+        infowindow.open(multiMap, marker);
+      }
+    })(marker));
   })
+};
+
+
+
+function initMultiple (addressBlock){
+  
+  multiMap = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: new google.maps.LatLng(-33.92, 151.25),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  infowindow = new google.maps.InfoWindow();
+
+
+  for (var i = 0; i < addressBlock.length; i++){
+    //loop through and get lat and long from above method
+    getCoordFromAddress(addressBlock[i][0], addressBlock[i][1]);
+  };
+
+  
+  // console.log(locations);
+  
+
+  var marker, i;
+  
+
+  for (i = 0; i < locations.length; i++) {  
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+      map: multiMap
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locations[i].title);
+        infowindow.open(multiMap, marker);
+      }
+    })(marker, i));
+  }
+
 }
 
 
