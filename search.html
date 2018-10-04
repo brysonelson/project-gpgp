@@ -32,6 +32,11 @@
           height: 400px;
           background-color: grey;
         }
+        #map-two {
+          width: 100%;
+          height: 400px;
+          background-color: grey;
+        }
         #map_canvas {
             height: 100%;
             width: 100%;
@@ -43,8 +48,7 @@
 <body>
 
     <!-- Start Navbar -->
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="top-page">
         <span class="navbar-brand mb-1 h1">
             <a class="navbar-brand" id="brand" href="index.html"><i class="fas fa-cocktail fa-flip-horizontal"></i>
                 Bar Finder
@@ -81,9 +85,13 @@
     <!-- End Navbar -->
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card" id="search-area">
+        <br>
+        <div class="ui green hidden floating message" id="login-flash">
+            <p>You are logged in.</p>
+        </div>
+        <div class="row" id="search-area">
+            <div class="col-md-12 slide-in from-left show" id="search-area-slider">
+                <div class="card slide-in-content">
                     <div class="card-header">
                         <strong>Search for a Bar</strong>
                     </div>
@@ -123,18 +131,37 @@
 
     </div>
 
-    <div id="search-results">
-
-    </div>
-
-    <div class="container" id="users-bar-info">
-        <button id="back-to-results">Back To Results</button>
-        <div class="container" id="bar-info">
-
+    
+    <div class="slide-in slide-in-two from-right from-left-two">
+        <div class="slide-in-content slide-in-content-two">
+            <button class="btn" id="back-to-search">Back To Search</button>
+            <div id="map"></div>
+            <div id="search-results">
+            
+            </div>
+            
         </div>
-
+        
     </div>
-    <div id="map"></div>
+
+    <div class="slide-in-two from-right-two">
+            
+        <div class="slide-in-content-two" id="search-results">
+            <div class="container" id="users-bar-info">
+                <button class="btn" id="back-to-results">Back To Results</button>
+                <div class="container" id="bar-info">
+                        
+                </div>
+    
+            </div>
+            <div id="map-two"></div>
+        </div>
+    
+    </div>
+
+
+    
+    
 
 
     <!-- Start Footer -->

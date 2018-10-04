@@ -81,9 +81,11 @@
 
     <div class="container">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card" id="recipe-search-area">
+        <button class="btn" id="back-to-bar-search">Back To Bar Search</button>
+
+        <div class="row" id="recipe-search-area">
+            <div class="col-md-12 w-100 slide-in-recipe from-left-recipe show-recipe">
+                <div class="card slide-in-content-recipe">
                     <div class="card-header">
                         <strong>Search for a Recipe</strong>
                     </div>
@@ -122,9 +124,15 @@
                 </div>
             </div>
         </div>
-
-        <div id="recipe-search-results">
-
+        <button class="btn" id="back-to-recipe-search">Back To Recipe Search</button>
+        
+        <div class="slide-in-recipe from-right-recipe">
+            <div class="slide-in-content-recipe">
+        
+                <div id="recipe-search-results">
+        
+                </div>
+            </div>
         </div>
     </div>
 

@@ -225,12 +225,13 @@ firebase.auth().onAuthStateChanged(function (user) {
                     console.log(response.drinks);
 
                     //create a userFavorite div and append it to the page
-                    var userFavorite = $("<div class'card'><hr>");
+                    var userFavorite = $("<div class'w-100 card'><hr>");
                     userFavorite.appendTo($("#user-recipe-choices"));
 
                     //create the divs to show the users favorites
 
                     var nameDiv = $("<h4>").text(response.drinks[0].strDrink).addClass("user-fav-drink-name").appendTo(userFavorite);
+                    var recipeImgDiv = $("<img class='w-50 fav-drink-img'>").attr("src", response.drinks[0].strDrinkThumb).appendTo(userFavorite);
                     var recipeInstrucrtionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
                     var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
 
@@ -258,6 +259,20 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 //when the logged in user clicks a checkbox
 $(document).on("click", ".favorites-button", function () {
+
+    event.preventDefault();
+
+    var thisParent = $(this).parent(".fav-btn-div");
+
+    var thumbChild = thisParent.find(".success-icon").css("display", "inline-block");
+    
+    
+    console.log(this);
+    function removeSuccessIcon() {
+        $(".success-icon").css("display", "none");
+    }
+
+    var removeSuccessIconFunc = setTimeout(removeSuccessIcon, 2000);
 
     //$("#user-choices").empty();
 
