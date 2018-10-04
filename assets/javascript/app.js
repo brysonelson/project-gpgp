@@ -7,6 +7,8 @@ $("#submit").on("click", function() {
     $(".slide-in").css("display", "block");
     $("#map").css("display", "block");
 
+    $("#search-results").empty();
+
     //store user inputs
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
@@ -112,6 +114,8 @@ $("#recipe-name-submit").on("click", function() {
 
   $("#back-to-bar-search").css("display", "none");
 
+  $("#recipe-search-results").empty();
+
   //store user inputs
   var recipeName = $("#cocktail-name").val().trim();
   //var alcoholType = $("#alcohol-type").val().trim();
@@ -163,7 +167,7 @@ $("#recipe-alcohol-submit").on("click", function() {
 
   $("#back-to-bar-search").css("display", "none");
 
-  
+  $("#recipe-search-results").empty();
 
   //store user inputs
   var alcoholType = $("#alcohol-type").val().trim();
@@ -195,10 +199,11 @@ $("#recipe-alcohol-submit").on("click", function() {
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var alcoholName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
       var recipeAlcoholImg = $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
-      var recipeInstructions = $("<h4>").text("Instructions: " + response.drinks[i].strInstructions).appendTo(recipeResultsDiv);
+      var recipeInstructions = $("<a class='btn btn-dark'>").attr("href", "https://www.google.com/search?q=" + response.drinks[i].strDrink + "+cocktail instructions").attr("target", "_blank").text("Find Instructions Here").appendTo(recipeResultsDiv);
       var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").attr("data-id", "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId).addClass("btn btn-default").appendTo(recipeResultsDiv);
       console.log(response.drinks[i].strDrinkThumb);
       console.log(response.drinks[i]);
+      console.log(recipeInstructions);
 
       
       var alcoholIdQueryUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId;
@@ -271,8 +276,12 @@ $(document).on("click", "#back-to-search", function() {
   $("#search-area").css("z-index", "10");
   $(".slide-in-two").css("z-index", "0");
   $(".slide-in").css("z-index", "0");
-  $(".slide-in").css("display", "none");
-  $(".slide-in-two").css("display", "none");
+
+  function delaySlideIn() {
+    $(".slide-in").css("display", "none");
+    $(".slide-in-two").css("display", "none");
+  };
+  var delaySlide = setTimeout(delaySlideIn, 300);
 })
 
 $("#back-to-bar-search").on("click", function() {
@@ -312,7 +321,7 @@ $(document).on("click", ".results-card", function () {
   var usersBarNameDiv = $("<h4>").text(usersBarAddressResults).appendTo(usersBarDiv);
 
   var usersBarWebsite = $(this).find(".location-website").text();
-  var usersBarNameDiv = $("<h4>").text(usersBarWebsite).appendTo(usersBarDiv);
+  var usersBarNameDiv = $("<a>").attr("href", usersBarWebsite).text(usersBarWebsite).appendTo(usersBarDiv);
 
 
   function delayNextScreen() {

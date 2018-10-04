@@ -239,10 +239,25 @@ favorites
     background: #591C2B;
     color: white;
 }
+#recipe-alcohol-submit:hover {
+    color: #591C2B;
+    background: white;
+}
 
 #recipe-name-submit {
     background: #591C2B;
     color: white;
+}
+
+.btn-dark:hover {
+    background: white;
+    color: black;
+    border: none;
+}
+
+#recipe-name-submit:hover {
+    color: #591C2B;
+    background: white;
 }
 
 #recipe-search-area {
@@ -252,7 +267,7 @@ favorites
 
 
 #recipe-search-results {
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
