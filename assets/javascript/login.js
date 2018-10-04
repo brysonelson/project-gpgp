@@ -179,32 +179,34 @@ firebase.auth().onAuthStateChanged(function (user) {
             //for loop through the users choices in firebase and send the URL with AJAX to get full results
             for (var i = 0; i < userData.length; i++) {
                 var favoriteUrl = userData[i].favoriteBar;
-                $.ajax({
-                    url: favoriteUrl,
-                    method: "GET"
-                }).then(function (response) {
+                if (favoriteUrl) {
+                    $.ajax({
+                        url: favoriteUrl,
+                        method: "GET"
+                    }).then(function (response) {
 
-                    //var usersData = JSON.stringify(user.val(), null,);
+                        //var usersData = JSON.stringify(user.val(), null,);
 
-                    //usersData = JSON.parse(usersData);
-                    //userData = Object.values(userData);
-                    console.log(response);
+                        //usersData = JSON.parse(usersData);
+                        //userData = Object.values(userData);
+                        console.log(response);
 
-                    console.log(favoriteUrl);
+                        console.log(favoriteUrl);
 
-                    //create a userFavorite div and append it to the page
-                    var userFavorite = $("<div class='w-100 card bar-fav-card'><hr>");
-                    userFavorite.appendTo($("#user-bar-choices"));
+                        //create a userFavorite div and append it to the page
+                        var userFavorite = $("<div class='w-100 card bar-fav-card'><hr>");
+                        userFavorite.appendTo($("#user-bar-choices"));
 
-                    //create the divs to show the users favorites
-                    var nameDiv = $("<h3 class='user-fav-bar-name'>").text(response.name).appendTo(userFavorite);
-                    var phoneDiv = $("<h4 class='user-fav-bar-phone'>").text('Phone: ' + response.phone).addClass("user-fav-bar-info").appendTo(userFavorite);
-                    var typeDiv = $("<h5 class='user-fav-bar-type'>").text('Bar Type: ' + response.brewery_type).addClass("user-fav-bar-info").appendTo(userFavorite);
-                    var addressDiv = $("<h5 class='user-fav-bar-address'>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).addClass("user-fav-bar-info").appendTo(userFavorite);
-                    var websiteDiv = $("<h5 class='user-fav-bar-url'>").text(response.website_url).addClass("user-fav-bar-info").appendTo(userFavorite);
-                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "View On Map").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
+                        //create the divs to show the users favorites
+                        var nameDiv = $("<h3 class='user-fav-bar-name'>").text(response.name).appendTo(userFavorite);
+                        var phoneDiv = $("<h4 class='user-fav-bar-phone'>").text('Phone: ' + response.phone).addClass("user-fav-bar-info").appendTo(userFavorite);
+                        var typeDiv = $("<h5 class='user-fav-bar-type'>").text('Bar Type: ' + response.brewery_type).addClass("user-fav-bar-info").appendTo(userFavorite);
+                        var addressDiv = $("<h5 class='user-fav-bar-address'>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).addClass("user-fav-bar-info").appendTo(userFavorite);
+                        var websiteDiv = $("<h5 class='user-fav-bar-url'>").text(response.website_url).addClass("user-fav-bar-info").appendTo(userFavorite);
+                        var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "View On Map").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
 
-                });
+                    });
+                }
             };
 
             //for loop through the users choices in firebase and send the URL with AJAX to get full results
