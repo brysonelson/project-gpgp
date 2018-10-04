@@ -202,7 +202,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                     var typeDiv = $("<h5 class='user-fav-bar-type'>").text('Bar Type: ' + response.brewery_type).addClass("user-fav-bar-info").appendTo(userFavorite);
                     var addressDiv = $("<h5 class='user-fav-bar-address'>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).addClass("user-fav-bar-info").appendTo(userFavorite);
                     var websiteDiv = $("<h5 class='user-fav-bar-url'>").text(response.website_url).addClass("user-fav-bar-info").appendTo(userFavorite);
-                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
+                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "View On Map").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
 
                 });
             };
@@ -210,33 +210,35 @@ firebase.auth().onAuthStateChanged(function (user) {
             //for loop through the users choices in firebase and send the URL with AJAX to get full results
             for (var i = 0; i < userData.length; i++) {
                 var favoriteUrl = userData[i].favoriteRecipe;
-                $.ajax({
-                    url: favoriteUrl,
-                    method: "GET"
-                }).then(function (response) {
+                if (favoriteUrl) {
+                    $.ajax({
+                        url: favoriteUrl,
+                        method: "GET"
+                    }).then(function (response) {
 
-                    //var usersData = JSON.stringify(user.val(), null,);
+                        //var usersData = JSON.stringify(user.val(), null,);
 
-                    //usersData = JSON.parse(usersData);
-                    //userData = Object.values(userData);
-                    console.log(response);
+                        //usersData = JSON.parse(usersData);
+                        //userData = Object.values(userData);
+                        console.log(response);
 
-                    console.log(favoriteUrl);
-                    console.log(response.drinks);
+                        console.log(favoriteUrl);
+                        //console.log(response.drinks[0].favoriteRecipe);
 
-                    //create a userFavorite div and append it to the page
-                    var userFavorite = $("<div class'w-100 card'><hr>");
-                    userFavorite.appendTo($("#user-recipe-choices"));
+                        //create a userFavorite div and append it to the page
+                        var userFavorite = $("<div class'w-100 card'><hr>");
+                        userFavorite.appendTo($("#user-recipe-choices"));
 
-                    //create the divs to show the users favorites
+                        //create the divs to show the users favorites
 
-                    var nameDiv = $("<h4>").text(response.drinks[0].strDrink).addClass("user-fav-drink-name").appendTo(userFavorite);
-                    var recipeImgDiv = $("<img class='w-50 fav-drink-img'>").attr("src", response.drinks[0].strDrinkThumb).appendTo(userFavorite);
-                    var recipeInstrucrtionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
-                    var removeFavoritesBtn = $("<input class='remove-favorites-button'>").attr("type", "button").attr("value", "Remove From Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response.id).addClass("btn btn-default btn-standard").appendTo(userFavorite);
+                        var nameDiv = $("<h4>").text(response.drinks[0].strDrink).addClass("user-fav-drink-name").appendTo(userFavorite);
+                        var recipeImgDiv = $("<img class='w-50 fav-drink-img'>").attr("src", response.drinks[0].strDrinkThumb).appendTo(userFavorite);
+                        var recipeInstrucrtionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
+                        var removeFavoritesBtn = $("<a class='remove-recipe-favorites-button'>").attr("href", "https://www.google.com/search?q=" + response.drinks[0].strDrink + "+cocktail+ingredients").text("Find Ingredients").attr("target", "_blank").addClass("btn btn-default btn-standard").appendTo(userFavorite);
 
 
-                });
+                    });
+                }
             };
 
         });

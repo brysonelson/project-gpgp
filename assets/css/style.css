@@ -183,6 +183,18 @@ a:hover {
     color: white;
 }
 
+.remove-favorites-button {
+    background: #591C2B;
+    color: white;
+    width: 100%;
+}
+
+.remove-recipe-favorites-button {
+    background: #591C2B;
+    color: white;
+    width: 100%;
+}
+
 .favorites-button:hover {
     background-color: #fff;
     color: #591C2B;
