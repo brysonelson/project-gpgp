@@ -71,9 +71,19 @@ a.nav-link:hover {
     color: white;
 }
 
+#back-to-search:hover {
+    color: #6b3140;
+    background: white;
+}
+
 #back-to-results {
     background: #6b3140;
     color: white;
+}
+
+#back-to-results:hover {
+    color: #6b3140;
+    background: white;
 }
 
 .card, .results-card {
@@ -92,6 +102,15 @@ a.nav-link:hover {
     width: 100% !important;
     margin: 10px 0px 10px 0px !important;
     padding: 2%;
+}
+
+.success-icon {
+    display: none;
+    transition-property: display 1s;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 #submit, .acct-btn {
@@ -163,6 +182,18 @@ a.nav-link:hover {
     color: #ffffff;
 }
 
+.favorites-button {
+    background: #591C2B;
+    color: white;
+}
+
+.favorites-button:hover {
+    background-color: #fff;
+    color: #591C2B;
+}
+
+favorites
+
 #gpgp {
     color: #ffffff;
     font-size: 12px;
@@ -208,15 +239,35 @@ a.nav-link:hover {
     background: #591C2B;
     color: white;
 }
+#recipe-alcohol-submit:hover {
+    color: #591C2B;
+    background: white;
+}
 
 #recipe-name-submit {
     background: #591C2B;
     color: white;
 }
 
+.btn-dark:hover {
+    background: white;
+    color: black;
+    border: none;
+}
+
+#recipe-name-submit:hover {
+    color: #591C2B;
+    background: white;
+}
+
+#recipe-search-area {
+    width: 60% !important;
+    padding: 5px 20px;
+}
+
 
 #recipe-search-results {
-    width: 50%;
+    width: 100%;
     margin: auto;
 }
 
@@ -239,8 +290,32 @@ a.nav-link:hover {
     padding: 20px;
 }
 
+.fav-drink-img {
+    margin-left: 25%;
+}
+
 #back-to-results {
     display: none;
+}
+
+#back-to-bar-search {
+    background: white;
+    color: #591C2B;
+}
+
+#back-to-bar-search:hover {
+    background: #591C2B;
+    color: white;
+}
+
+.recipes-button:hover {
+    background: white;
+    color: #591C2B;
+}
+
+.recipes-button {
+    background: #591C2B;
+    color: white;
 }
 
 #map-three {
@@ -325,6 +400,46 @@ a.nav-link:hover {
   }
   
   .slide-in-two.show .slide-in-content-two {
+    transform: translateX(0);
+    -webkit-transform: translateX(0);
+  }
+
+  .slide-in-recipe {
+    z-index: 10;  /*to position it in front of the other content */
+    position: absolute;
+    overflow: hidden; /* to prevent scrollbar appearing */
+    /* display: none; */
+    border-radius: 3px;
+  }
+  
+  .slide-in-recipe.from-left-recipe {
+    left: 0;
+  }
+  
+  .slide-in-recipe.from-right-recipe {
+    right: 25%;
+    width: 50%;
+    margin: auto;
+  }
+  
+  .slide-in-content-recipe {
+    padding: 5px 20px;
+    /* margin-left: 25%; */
+    background: #eee;
+    transition: all .5s ease; /* our nice transition */
+  }
+  
+  .slide-in-recipe.from-left-recipe .slide-in-content-recipe {
+    transform: translateX(-500%);
+    -webkit-transform: translateX(-500%);
+  }
+  
+  .slide-in-recipe.from-right-recipe .slide-in-content-recipe {
+    transform: translateX(200%);
+    -webkit-transform: translateX(200%);
+  }
+  
+  .slide-in-recipe.show-recipe .slide-in-content-recipe {
     transform: translateX(0);
     -webkit-transform: translateX(0);
   }

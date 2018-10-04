@@ -7,6 +7,8 @@ $("#submit").on("click", function() {
     $(".slide-in").css("display", "block");
     $("#map").css("display", "block");
 
+    $("#search-results").empty();
+
     //store user inputs
     var city = $("#city").val().trim();
     var state = $("#state").val().trim();
@@ -41,7 +43,7 @@ $("#submit").on("click", function() {
             //display the search results in the search-results area
             var innerArray = [];
 
-            var resultsDiv = $("<div class='card results-div-card'>");
+            var resultsDiv = $("<a href='#top-page' class='card results-div-card'>");
             $("#search-results").append(resultsDiv);
             var individualResults = $("<div class='results-card'>").appendTo(resultsDiv);
             var nameDiv = $("<h4 class='location-name'>").text(response[i].name).appendTo(individualResults);
@@ -51,8 +53,9 @@ $("#submit").on("click", function() {
             var addressDiv = $("<h5 class='location-url'>").text(response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code).appendTo(individualResults);
             innerArray[0] = (response[i].street + ", " + response[i].city + ", " + response[i].state + ", " + response[i].postal_code);
             var websiteDiv = $("<a class='location-website'>").attr("href", response[i].website_url).attr("target", "_blank").text(response[i].website_url).appendTo(individualResults);
-            var favBtnDiv = $("<div>").appendTo(resultsDiv);
+            var favBtnDiv = $("<div class='fav-btn-div'>").appendTo(resultsDiv);
             var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(favBtnDiv);
+            var successIcon = $("<i class='pl-2 fas fa-thumbs-up success-icon'></i>").appendTo(favBtnDiv);
             addressblock.push(innerArray);
 
             
@@ -63,8 +66,10 @@ $("#submit").on("click", function() {
         }
         // console.log(addressblock);
         initMultiple(addressblock);
+
         $('.slide-in').toggleClass('show');
         $("#back-to-search").css("display", "block");
+        
     });
 
 
@@ -81,9 +86,22 @@ $("#back-to-recipe-search").on("click", function() {
 
   //show the recipe search area
   $("#recipe-search-area").css("display", "block");
+  
+  $("#back-to-bar-search").css("display", "block");
 
-  //hide the recipe results
-  $("#recipe-search-results").css("display", "none");
+  //hide the recipe search area
+  function backToRecipeSearch() {
+    $('.slide-in-recipe').toggleClass('show-recipe');
+  }
+
+  var backToRecSearch = setTimeout(backToRecipeSearch, 300);
+
+  function hideRecResults() {
+    $("#recipe-search-results").css("display", "none");
+  }
+
+  var hideRecSearch = setTimeout(hideRecResults, 400);
+  
   
 })
 
@@ -94,6 +112,10 @@ $("#recipe-name-submit").on("click", function() {
 
   $("#back-to-recipe-search").css("display", "block");
 
+  $("#back-to-bar-search").css("display", "none");
+
+  $("#recipe-search-results").empty();
+
   //store user inputs
   var recipeName = $("#cocktail-name").val().trim();
   //var alcoholType = $("#alcohol-type").val().trim();
@@ -102,7 +124,14 @@ $("#recipe-name-submit").on("click", function() {
   console.log(recipeQueryUrl);
 
   //hide the recipe search area
-  $("#recipe-search-area").css("display", "none");
+  function removeRecipeSearch() {
+    $("#recipe-search-area").css("display", "none");
+  }
+
+  var removeRecSearch = setTimeout(removeRecipeSearch, 300);
+
+  //hide the recipe search area
+  //$("#recipe-search-area").css("display", "none");
 
   //show the recipe results
   $("#recipe-search-results").css("display", "block");
@@ -126,6 +155,7 @@ $("#recipe-name-submit").on("click", function() {
       console.log(response.drinks[i]);
     };
   });
+  $('.slide-in-recipe').toggleClass('show-recipe');
 });
 
 //===================== When you click the submit button for alcohol type ==============================
@@ -135,6 +165,10 @@ $("#recipe-alcohol-submit").on("click", function() {
 
   $("#back-to-recipe-search").css("display", "block");
 
+  $("#back-to-bar-search").css("display", "none");
+
+  $("#recipe-search-results").empty();
+
   //store user inputs
   var alcoholType = $("#alcohol-type").val().trim();
   //var alcoholType = $("#alcohol-type").val().trim();
@@ -143,7 +177,11 @@ $("#recipe-alcohol-submit").on("click", function() {
   console.log(alcoholQueryUrl);
 
   //hide the recipe search area
-  $("#recipe-search-area").css("display", "none");
+  function removeRecipeSearch() {
+    $("#recipe-search-area").css("display", "none");
+  }
+
+  var removeRecSearch = setTimeout(removeRecipeSearch, 300);
 
   //show the recipe results
   $("#recipe-search-results").css("display", "block");
@@ -161,10 +199,11 @@ $("#recipe-alcohol-submit").on("click", function() {
       var recipeResultsDiv = $("<div class='card results-card'>").appendTo($("#recipe-search-results"));
       var alcoholName = $("<h4>").text("Recipe: " + response.drinks[i].strDrink).appendTo(recipeResultsDiv);
       var recipeAlcoholImg = $("<img class='recipe-img'>").attr("src", response.drinks[i].strDrinkThumb).appendTo(recipeResultsDiv);
-      var recipeInstructions = $("<h4>").text("Instructions: " + response.drinks[i].strInstructions).appendTo(recipeResultsDiv);
+      var recipeInstructions = $("<a class='btn btn-dark'>").attr("href", "https://www.google.com/search?q=" + response.drinks[i].strDrink + "+cocktail instructions").attr("target", "_blank").text("Find Instructions Here").appendTo(recipeResultsDiv);
       var recipeFavoritesBtn = $("<input class='recipes-button'>").attr("type", "button").attr("value", "Add To Favorites").attr("data-id", "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId).addClass("btn btn-default").appendTo(recipeResultsDiv);
       console.log(response.drinks[i].strDrinkThumb);
       console.log(response.drinks[i]);
+      console.log(recipeInstructions);
 
       
       var alcoholIdQueryUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + alcoholId;
@@ -183,6 +222,7 @@ $("#recipe-alcohol-submit").on("click", function() {
       });
     };
   });
+  $('.slide-in-recipe').toggleClass('show-recipe');
 });
 
 
@@ -236,13 +276,24 @@ $(document).on("click", "#back-to-search", function() {
   $("#search-area").css("z-index", "10");
   $(".slide-in-two").css("z-index", "0");
   $(".slide-in").css("z-index", "0");
-  $(".slide-in").css("display", "none");
-  $(".slide-in-two").css("display", "none");
+
+  function delaySlideIn() {
+    $(".slide-in").css("display", "none");
+    $(".slide-in-two").css("display", "none");
+  };
+  var delaySlide = setTimeout(delaySlideIn, 300);
+})
+
+$("#back-to-bar-search").on("click", function() {
+  window.location = "search.html";
 })
 //======================= WHEN YOU CLICK ON A BAR IN THE RESULTS ========================================
 //var usersBarAddress;
 
 $(document).on("click", ".results-card", function () {
+
+  $('html, body').animate({scrollTop:0}, "ease");
+        //return false;
 
 
   //$("#search-results").css("display", "none");
@@ -270,12 +321,18 @@ $(document).on("click", ".results-card", function () {
   var usersBarNameDiv = $("<h4>").text(usersBarAddressResults).appendTo(usersBarDiv);
 
   var usersBarWebsite = $(this).find(".location-website").text();
-  var usersBarNameDiv = $("<h4>").text(usersBarWebsite).appendTo(usersBarDiv);
+  var usersBarNameDiv = $("<a>").attr("href", usersBarWebsite).text(usersBarWebsite).appendTo(usersBarDiv);
 
-  $('.slide-in-two').toggleClass('show');
-  $("#back-to-results").css("display", "flex");
-  $(".slide-in-two").css("z-index", "10");
-  $(".slide-in").css("z-index", "0");
+
+  function delayNextScreen() {
+    $('.slide-in-two').toggleClass('show');
+    $("#back-to-results").css("display", "flex");
+    $(".slide-in-two").css("z-index", "10");
+    $(".slide-in").css("z-index", "0");
+  }
+  var nextScreen = setTimeout(delayNextScreen, 300);
+
+  
 
   //======================================= GOOGLE MAPS ===================================================
 
