@@ -188,8 +188,6 @@ a:hover {
     color: #591C2B;
 }
 
-favorites
-
 #gpgp {
     color: #ffffff;
     font-size: 12px;
@@ -236,6 +234,7 @@ favorites
     background: #591C2B;
     color: white;
 }
+
 #recipe-alcohol-submit:hover {
     color: #591C2B;
     background: white;
@@ -262,7 +261,6 @@ favorites
     padding: 5px 20px;
 }
 
-
 #recipe-search-results {
     width: 100%;
     margin: auto;
@@ -276,7 +274,6 @@ favorites
 .fav-head-options:hover {
     border-radius: 3px;
 }
-
 
 #bar-favs {
     border-bottom: solid 1px black;
@@ -324,8 +321,6 @@ favorites
     padding-bottom: 650px;
     margin-bottom: 50px;
 }
-
-
 
 .slide-in {
     z-index: 10;  /*to position it in front of the other content */
