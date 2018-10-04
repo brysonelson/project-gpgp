@@ -28,18 +28,22 @@ $("#create-acct-btn").on("click", function () {
     console.log("test");
     console.log(emailInput);
 
+    function goToSearch() {
+        window.location = "search.html";
+    }
     //use firebase to create and store the new user 
-    firebase.auth().createUserWithEmailAndPassword(emailInput, passInput).catch(function (error) {
+    firebase.auth().createUserWithEmailAndPassword(emailInput, passInput).then(function(response) {
+        var searchDelay = setTimeout(goToSearch, 1000);
+    }).catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
+        $('#error-flash').delay(500).fadeIn('normal', function () {
+            $(this).delay(2500).fadeOut();
+        });
     });
-
-    //store the new users ID in the firebase database
-    //database.ref().push({
-    //    uid: uid
-    //})
+   
 })
 
 
@@ -326,5 +330,7 @@ $(document).on("click", "#clear-favs-btn", function () {
 
     //make sure the screen clears
     $("#user-choices").empty();
+
+    location.reload(true);
 
 });
