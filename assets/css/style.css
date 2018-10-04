@@ -353,7 +353,7 @@ a:hover {
   }
   
   .slide-in-content {
-    padding: 5px 20px;
+    /* padding: 5px 20px; */
     background: #eee;
     transition: all .5s ease; /* our nice transition */
   }
@@ -432,7 +432,7 @@ a:hover {
   }
   
   .slide-in-content-recipe {
-    padding: 5px 20px;
+    /* padding: 5px 20px; */
     /* margin-left: 25%; */
     background: #eee;
     transition: all .5s ease; /* our nice transition */
