@@ -8,8 +8,6 @@ html {
 }
 
 body {
-    /* text-align: center; */
-    /* font-size: 16px; */
     font-family: 'Lato', sans-serif;
     letter-spacing: .05em;
     width:100%;
@@ -64,11 +62,8 @@ a.nav-link:hover {
 
 .card, .results-card {
     color: #3D0A17;
-    /* background-color: #e9ebee; */
     width: 35%;
-    /* opacity: 0.9; */
     text-align: left;
-    /* margin: 0 auto; */
     margin: 55px auto;
     float: none;
     margin-bottom: 100px;
