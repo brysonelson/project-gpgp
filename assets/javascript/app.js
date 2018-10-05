@@ -56,6 +56,8 @@ $("#submit").on("click", function() {
             var favBtnDiv = $("<div class='fav-btn-div'>").appendTo(resultsDiv);
             var favoritesBtn = $("<input class='favorites-button'>").attr("type", "button").attr("value","Add To Favorites").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(favBtnDiv);
             var successIcon = $("<i class='pl-2 fas fa-thumbs-up success-icon'></i>").appendTo(favBtnDiv);
+            var comFavBtnDiv = $("<div class='com-fav-btn-div'>").appendTo(resultsDiv);
+            var comFavoritesBtn = $("<input class='com-favorites-button'>").attr("type", "button").attr("value","Share With Community").attr("data-id", "https://api.openbrewerydb.org/breweries/" + response[i].id).addClass("btn btn-default").appendTo(comFavBtnDiv);
             addressblock.push(innerArray);
 
             
@@ -238,8 +240,12 @@ $("#recipe-favs").on("click", function() {
   //hide the favorite bars html
   $("#user-bar-choices").css("display", "none");
 
+  //hide the community bars html
+  $("#community-choices").css("display", "none");
+
   $("#bar-favs").css("border-bottom", "none");
   $("#recipe-favs").css("border-bottom", "solid 1px black");
+  $("#com-favs").css("border-bottom", "none");
 
 })
 
@@ -252,8 +258,30 @@ $("#bar-favs").on("click", function() {
   //show the favorite bars html
   $("#user-bar-choices").css("display", "block");
 
+  //hide the community bars html
+  $("#community-choices").css("display", "none");
+
   $("#recipe-favs").css("border-bottom", "none");
   $("#bar-favs").css("border-bottom", "solid 1px black");
+  $("#com-favs").css("border-bottom", "none");
+
+})
+
+//when you click on the Community bars
+$("#com-favs").on("click", function() {
+
+  //hide the favorite recipes html
+  $("#user-recipe-choices").css("display", "none");
+
+  //hide the favorite bars html
+  $("#user-bar-choices").css("display", "none");
+
+  //show the community bars html
+  $("#community-choices").css("display", "block");
+
+  $("#com-favs").css("border-bottom", "solid 1px black");
+  $("#bar-favs").css("border-bottom", "none");
+  $("#recipe-favs").css("border-bottom", "none");
 
 })
 

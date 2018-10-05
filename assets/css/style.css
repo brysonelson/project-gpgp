@@ -50,6 +50,10 @@ a.nav-link:hover {
     display: none;
 }
 
+#community-choices {
+    display: none;
+}
+
 .recipe-img {
     height: 200px;
     width: 200px;
