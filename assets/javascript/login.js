@@ -175,7 +175,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         var userList = userObject.child(uid);
 
         //whenever the users data updates or the page loads
-        userList.on('value', function (user) {
+        userObject.on('value', function (user) {
 
             //store the users data from firebase
             var userData = Object.values(user.val());
@@ -246,8 +246,61 @@ firebase.auth().onAuthStateChanged(function (user) {
                     });
                 }
             };
-
         });
+        
+
+        var communityList = userObject.child('community');
+        console.log(communityList);
+        
+        //whenever the users data updates or the page loads
+        communityList.on('value', function (comResponse) {
+
+            $("#community-choices").empty();
+
+            var comData = Object.values(comResponse.val());
+            console.log(comData);
+
+            //for loop through the users choices in firebase and send the URL with AJAX to get full results
+            for (var i = 0; i < comData.length; i++) {
+                var favoriteUrl = comData[i].communityBar;
+                console.log(favoriteUrl);
+                if (favoriteUrl) {
+                    $.ajax({
+                        url: favoriteUrl,
+                        method: "GET"
+                    }).then(function (response) {
+                        console.log(favoriteUrl);
+                        //var usersData = JSON.stringify(user.val(), null,);
+
+                        //usersData = JSON.parse(usersData);
+                        //userData = Object.values(userData);
+                        console.log(response);
+
+                        //console.log(response.drinks[0].favoriteRecipe);
+
+                        //create a userFavorite div and append it to the page
+                        var comFavorite = $("<div class'w-100 card'><hr>");
+                        comFavorite.appendTo($("#community-choices"));
+
+                        //create the divs to show the users favorites
+
+                        //create the divs to show the users favorites
+                        var nameDiv = $("<h3 class='user-fav-bar-name'>").text(response.name).appendTo(comFavorite);
+                        var phoneDiv = $("<h4 class='user-fav-bar-phone'>").text('Phone: ' + response.phone).addClass("user-fav-bar-info").appendTo(comFavorite);
+                        var typeDiv = $("<h5 class='user-fav-bar-type'>").text('Bar Type: ' + response.brewery_type).addClass("user-fav-bar-info").appendTo(comFavorite);
+                        var addressDiv = $("<h5 class='user-fav-bar-address'>").text(response.street + ", " + response.city + ", " + response.state + ", " + response.postal_code).addClass("user-fav-bar-info").appendTo(comFavorite);
+                        var websiteDiv = $("<h5 class='user-fav-bar-url'>").text(response.website_url).addClass("user-fav-bar-info").appendTo(comFavorite);
+                        
+
+
+                    });
+                }
+            };
+        });
+    
+
+    
+
 
         //or else...
     } else {
@@ -298,6 +351,41 @@ $(document).on("click", ".favorites-button", function () {
 
 });
 
+//============================= When The User Makes A Community Choice =====================================
+
+//when the logged in user clicks a checkbox
+$(document).on("click", ".com-favorites-button", function () {
+
+    event.preventDefault();
+
+    var thisParent = $(this).parent(".com-fav-btn-div");
+
+    var thumbChild = thisParent.find(".success-icon").css("display", "inline-block");
+    
+    
+    console.log(this);
+    function removeSuccessIcon() {
+        $(".success-icon").css("display", "none");
+    }
+
+    var removeSuccessIconFunc = setTimeout(removeSuccessIcon, 2000);
+
+    //$("#user-choices").empty();
+
+    //store the specific value of that checkbox
+    var userComBarChoice = $(this).attr("data-id");
+
+    //store the current user
+    var user = firebase.auth().currentUser;
+
+    //save that value in the users object in firebase
+    var rootRef = firebase.database().ref();
+    var storesRef = rootRef.child('users').child('community').push({
+        communityBar: userComBarChoice
+    });
+
+});
+
 //============================= When The User Makes A Recipe Choice =====================================
 
 //when the logged in user clicks a checkbox
@@ -329,7 +417,7 @@ $(document).on("click", "#clear-favs-btn", function () {
     firebase.database().ref().child('users').child(uid).remove();
 
     //make sure the screen clears
-    $("#user-choices").empty();
+    //$("#user-choices").empty();
 
     location.reload(true);
 
