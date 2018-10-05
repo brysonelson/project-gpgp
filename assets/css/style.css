@@ -46,6 +46,10 @@ a.nav-link:hover {
     border-right: solid grey 1px;
 }
 
+.bold-text {
+    font-weight: bold;
+ }
+
 #user-recipe-choices {
     display: none;
 }

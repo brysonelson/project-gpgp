@@ -175,7 +175,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         var userList = userObject.child(uid);
 
         //whenever the users data updates or the page loads
-        userObject.on('value', function (user) {
+        userList.on('value', function (user) {
 
             //store the users data from firebase
             var userData = Object.values(user.val());
@@ -240,6 +240,15 @@ firebase.auth().onAuthStateChanged(function (user) {
                         var nameDiv = $("<h4>").text(response.drinks[0].strDrink).addClass("user-fav-drink-name").appendTo(userFavorite);
                         var recipeImgDiv = $("<img class='w-50 fav-drink-img'>").attr("src", response.drinks[0].strDrinkThumb).appendTo(userFavorite);
                         var recipeInstrucrtionsDiv = $("<h5>").text(response.drinks[0].strInstructions).appendTo(userFavorite);
+                        var ratingExpl =$("<h4>").text("Rate Recipe: ").addClass("bold-text").appendTo(userFavorite);
+                        //create div for star rating
+                        var ratingBar = $("<div>").addClass("ui large star rating").appendTo(userFavorite);
+                        //jQuery for star rating
+                        $('.ui.rating')
+                            .rating({
+                                //initialRating: 3,
+                                maxRating: 5
+                            });
                         var removeFavoritesBtn = $("<a class='remove-recipe-favorites-button'>").attr("href", "https://www.google.com/search?q=" + response.drinks[0].strDrink + "+cocktail+ingredients").text("Find Ingredients").attr("target", "_blank").addClass("btn btn-default btn-standard").appendTo(userFavorite);
 
 
